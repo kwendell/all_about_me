@@ -1,17 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import me from './images/meTransparent.png';
 import './App.css';
+
+
+import Background from './images/paper_half_lines.png';
+
+var sectionStyle = {
+ width: "100%",
+  height: "400px",
+ backgroundImage: `url(${Background})`
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          It's All About Me check-in
-        </p>
-      
-      </header>
+    <div class="App" style={ sectionStyle }>
+      <h1>
+          It's All About Me
+        </h1>
+          <img src={me} className="App-logo" alt="my avatar" />
+     
     </div>
   );
 }
