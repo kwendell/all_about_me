@@ -2,7 +2,7 @@ import React from 'react';
 
 import Background from './images/paper_half_lines.png';
 import me from './images/meTransparent.png';
-
+import nato from './images/NATO.png';
 var sectionStyle = {
  width: "25%",
   height: "25%",
@@ -22,12 +22,12 @@ class Canvas extends React.Component {
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-    
+  
     const nowAngle = angle ;
-    ctx.clearRect(nowAngle, 0, img.width, img.height);  
-      ctx.drawImage(img, angle, 0)
+   ctx.clearRect(angle-1, 0, img.width, img.height);  
+      ctx.drawImage(img, angle, 0);
      
-    
+
     
    // ctx.beginPath();
    
@@ -39,7 +39,7 @@ class Canvas extends React.Component {
   }
   
   render() {
-    return <div><canvas width="600" height="300" ref={this.canvasRef} /> <img ref={this.imageRef} src={me} className="hidden" /></div>;
+    return <div><canvas width="1200" height="300" ref={this.canvasRef} /> <img ref={this.imageRef} src={nato} className="hidden" /></div>;
   }
 }
 
