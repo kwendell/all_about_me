@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import me from './images/meTransparent.png';
+import Animation from './Animation.js'
 
 class OrbitalCanvas extends Component {
 componentDidMount() {
