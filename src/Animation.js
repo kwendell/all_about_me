@@ -1,4 +1,4 @@
-
+ 
 import React from 'react';
 import Canvas from './Canvas.js'
 class Animation extends React.Component {
