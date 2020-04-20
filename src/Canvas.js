@@ -10,6 +10,7 @@ class Canvas extends React.Component {
     console.log(props);
     this.canvasRef = React.createRef();
     this.imageRef = React.createRef();
+    this.imageRef2 = React.createRef();
     this.angle = this.props.angle;
     this.r=this.props.r;
  //   console.log(this.r);
@@ -17,9 +18,10 @@ class Canvas extends React.Component {
   }
   
   componentDidUpdate() {
-    //const {angle} = this.props.angle;
+
     const canvas = this.canvasRef.current;
      const img = this.imageRef.current;
+     const me = this.imageRef2.current;
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
@@ -34,8 +36,9 @@ class Canvas extends React.Component {
    
     x+=200;
     y+=200;
-//   ctx.clearRect(x, y, img.width+200, img.height+200);  
+   ctx.clearRect(0, 0, 1200, 600);  
      ctx.drawImage(img, x, y);
+     ctx.drawImage(me,200,200);
      
 
     
@@ -49,7 +52,7 @@ class Canvas extends React.Component {
   }
   
   render() {
-    return <div><canvas width="1200" height="600" ref={this.canvasRef} /> <img ref={this.imageRef} src={nato} className="hidden" /></div>;
+    return <div><canvas width="1200" height="600" ref={this.canvasRef} /> <img ref={this.imageRef} src={nato} className="hidden" /><img ref={this.imageRef2} src={me} className="hidden" /></div>;
   }
 }
 

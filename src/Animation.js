@@ -27,14 +27,16 @@ class Animation extends React.Component {
     const currentTime = new Date();
     const deltaTime = currentTime-this.lastTime;
     
-    if (deltaTime > 2000 ) {
+    if (deltaTime > 100 ) {
     const deltaTheta=.1;
    //  this.setState(prevState => ({ angle: (prevState.angle + deltaTheta) % 2*Math.PI }));
    this.setState({angle:this.state.angle+deltaTheta});
      console.log(this.state.angle);
+     const newR = 150/(1-Math.cos(this.state.angle)/2);
+     this.setState({r:newR});
    // this.setState(prevR => ({r:150/(1-Math.cos(this.state.angle)/2)}));
     
-    console.log(this.state.angle);
+    console.log(this.state.r);
   this.lastTime=currentTime;
   }
     
