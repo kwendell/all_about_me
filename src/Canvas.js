@@ -38,7 +38,7 @@ class Canvas extends React.Component {
     y+=200;
    ctx.clearRect(0, 0, 1200, 600);  
      ctx.drawImage(img, x, y);
-     ctx.drawImage(me,200,200);
+     ctx.drawImage(me,400,200);
      
 
     

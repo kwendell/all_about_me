@@ -27,7 +27,7 @@ class Animation extends React.Component {
     const currentTime = new Date();
     const deltaTime = currentTime-this.lastTime;
     
-    if (deltaTime > 100 ) {
+    if (deltaTime > 50 ) {
     const deltaTheta=.1;
    //  this.setState(prevState => ({ angle: (prevState.angle + deltaTheta) % 2*Math.PI }));
    this.setState({angle:this.state.angle+deltaTheta});
