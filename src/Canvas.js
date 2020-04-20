@@ -19,17 +19,17 @@ class Canvas extends React.Component {
     const width = canvas.width;
     const height = canvas.height;
   
-    const nowAngle = angle ;
+    
     const r = 200;
     const translate_x=r;
     const translate_y=translate_x;
-    
-    let x = r*Math.cos(angle*Math.PI/180);
-    let y = r*Math.sin(angle*Math.PI/180);
+   // console.log(angle);
+    let x = r*Math.cos(angle);
+    let y = r*Math.sin(angle);
     x+=translate_x;
     y+=translate_y;
    ctx.clearRect(x-4, y-4, img.width+8, img.height+8);  
-      ctx.drawImage(img, x, y);
+   //   ctx.drawImage(img, x, y);
      
 
     
