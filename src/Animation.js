@@ -8,6 +8,7 @@ class Animation extends React.Component {
     this.updateAnimationState = this.updateAnimationState.bind(this);
     this.area=Math.PI*this.props.semi_major_axis*this.props.semi_minor_axis;
     this.fractionalArea=this.area*this.props.fraction;
+    this.lastTime=new Date();
   }
   
   componentDidMount() {
@@ -21,13 +22,21 @@ class Animation extends React.Component {
   updateAnimationState() {
  
     // find the next theta by solution for delta theta.
-    const deltaTheta = 2*this.fractionalArea*Math.PI*((1-Math.cos(this.state.angle)/2)/150)**2;
+  //  let deltaTheta = 2*this.fractionalArea*Math.PI*((1-Math.cos(this.state.angle)/2)/150)**2;
     this.rAF = requestAnimationFrame(this.updateAnimationState);
+    const currentTime = new Date();
+    const deltaTime = currentTime-this.lastTime;
     
-     this.setState(prevState => ({ angle: (prevState.angle + deltaTheta) % 2*Math.PI }));
-    this.setState(prevR => ({r:150/(1-Math.cos(this.state.angle % 2*Math.PI)/2)}));
+    if (deltaTime > 2000 ) {
+    const deltaTheta=.1;
+   //  this.setState(prevState => ({ angle: (prevState.angle + deltaTheta) % 2*Math.PI }));
+   this.setState({angle:this.state.angle+deltaTheta});
+     console.log(this.state.angle);
+   // this.setState(prevR => ({r:150/(1-Math.cos(this.state.angle)/2)}));
     
-  //  console.log(this.state.angle);
+    console.log(this.state.angle);
+  this.lastTime=currentTime;
+  }
     
   
   

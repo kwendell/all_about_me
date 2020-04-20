@@ -26,17 +26,16 @@ class Canvas extends React.Component {
    //  console.log(this.r);
    // console.log(this.angle);
     
-    const r = 200;
-    const translate_x=r;
-    const translate_y=translate_x;
+  
+  
    // console.log(angle);
-    let x = r*Math.cos(this.props.angle);
-    let y = r*Math.sin(this.props.angle);
-    console.log(x);
-    x+=translate_x;
-    y+=translate_y;
-   ctx.clearRect(x-4, y-4, img.width+8, img.height+8);  
-   //   ctx.drawImage(img, x, y);
+    let x = this.props.r*Math.cos(this.props.angle);
+    let y = this.props.r*Math.sin(this.props.angle);
+   
+    x+=200;
+    y+=200;
+//   ctx.clearRect(x, y, img.width+200, img.height+200);  
+     ctx.drawImage(img, x, y);
      
 
     

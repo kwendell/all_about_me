@@ -15,7 +15,7 @@ var sectionStyle = {
 class App extends React.Component {
   render() {
     return <div style={sectionStyle}>
-      <Animation semi_major_axis={200} semi_minor_axis={100} eccentricity={.5} fraction={.01} ></Animation>
+      <Animation semi_major_axis={200} semi_minor_axis={100} eccentricity={.5} fraction={.005} ></Animation>
     </div>;
   }
 }
