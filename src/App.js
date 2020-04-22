@@ -25,6 +25,9 @@ class App extends React.Component {
          <h2 className="App">
           email: kdubzot9@gmail.com
         </h2>
+          <h2 className="App">
+          U/I Architect
+        </h2>
         </div>
       <Animation semi_major_axis={200} semi_minor_axis={100} eccentricity={.5} fraction={.005} ></Animation>
     </div>;

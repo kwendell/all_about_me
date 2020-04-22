@@ -3,6 +3,7 @@ import React from 'react';
 
 import me from './images/meTransparent.png';
 import nato from './images/NATO.png';
+import pencil from './images/pencil.png';
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -13,8 +14,7 @@ class Canvas extends React.Component {
     this.imageRef2 = React.createRef();
     this.angle = this.props.angle;
     this.r=this.props.r;
- //   console.log(this.r);
-  //  console.log(this.angle);
+
   }
   
   componentDidUpdate() {
@@ -25,20 +25,18 @@ class Canvas extends React.Component {
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-   //  console.log(this.r);
-   // console.log(this.angle);
-    
+  
   
   
    // console.log(angle);
     let x = this.props.r*Math.cos(this.props.angle);
     let y = this.props.r*Math.sin(this.props.angle);
    
-    x+=200;
-    y+=200;
+    x+=canvas.width/2-200;
+    y+=canvas.height/2;
    ctx.clearRect(0, 0, 1200, 600);  
      ctx.drawImage(img, x, y);
-     ctx.drawImage(me,400,200);
+     ctx.drawImage(me,canvas.width/2,canvas.height/2);
      
 
     
@@ -52,7 +50,7 @@ class Canvas extends React.Component {
   }
   
   render() {
-    return <div><canvas width="1200" height="600" ref={this.canvasRef} /> <img ref={this.imageRef} src={nato} className="hidden" /><img ref={this.imageRef2} src={me} className="hidden" /></div>;
+    return <div><canvas width="1200" height="600" ref={this.canvasRef} /> <img ref={this.imageRef} src={pencil} className="hidden" /><img ref={this.imageRef2} src={me} className="hidden" /></div>;
   }
 }
 
