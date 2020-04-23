@@ -32,21 +32,20 @@ class Canvas extends React.Component {
     let x = this.props.r*Math.cos(this.props.angle);
     let y = this.props.r*Math.sin(this.props.angle);
    
+ 
     x+=canvas.width/2-200;
     y+=canvas.height/2;
-   ctx.clearRect(0, 0, 1200, 600);  
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
      ctx.drawImage(img, x, y);
-     ctx.drawImage(me,canvas.width/2,canvas.height/2);
+  
+
+     ctx.drawImage(me,canvas.width/2-me.width,canvas.height/2);
+
      
 
     
-   // ctx.beginPath();
    
-   // ctx.translate(width/2, height/2 );
-   // ctx.rotate(angle * Math.PI / 180);
-   // ctx.fillStyle = '#4397AC';
-   // ctx.fillRect(-width/4, -height/4, width/2, height/2);
-   // ctx.restore();
   }
   
   render() {
