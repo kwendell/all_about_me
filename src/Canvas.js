@@ -4,7 +4,7 @@ import React from 'react';
 import me from './images/meTransparent.png';
 import nato from './images/NATO.png';
 import pencil from './images/pencil.png';
-import projects from './images/meProjects.png';
+//import projects from './images/meProjects.png';
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Canvas extends React.Component {
     this.canvasRef = React.createRef();
     this.imageRef = React.createRef();
     this.imageRef2 = React.createRef();
+    
     this.angle = this.props.angle;
     this.r=this.props.r;
     this.semi_major_axis = this.props.semi_major_axis;
@@ -45,7 +46,7 @@ class Canvas extends React.Component {
   
   render() {
     return <div><canvas width="1000" height="290"  ref={this.canvasRef} > 
-    <img ref={this.imageRef} src={pencil} className="hidden" />
+    <img ref={this.imageRef} src={nato} className="hidden" />
     <img ref={this.imageRef2} src={me} className="hidden" />
     </canvas>
    

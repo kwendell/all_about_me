@@ -36,7 +36,7 @@ class App extends React.Component {
         </h1>
         </div>
      
-      <Animation semi_major_axis={100} semi_minor_axis={25} eccentricity={.5} fraction={.01} ></Animation>
+      <Animation semi_major_axis={100} semi_minor_axis={25} eccentricity={.5} fraction={.01}  ellipseParms={{a:100}}></Animation>
       <div>Projects</div>
     </div>
   }
