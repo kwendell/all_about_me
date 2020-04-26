@@ -9,6 +9,12 @@ class Animation extends React.Component {
     this.area=Math.PI*this.props.semi_major_axis*this.props.semi_minor_axis;
     this.fractionalArea=this.area*this.props.fraction;
     this.lastTime=new Date();
+    this.eccentricity = this.props.eccentricity;
+    this.semi_major_axis = this.props.semi_major_axis;
+    this.semi_minor_axis = this.props.semi_minor_axis;
+    this.p=this.semi_major_axis*(1-this.eccentricity**2);
+    console.log(this.area);
+    
   }
   
   componentDidMount() {
@@ -26,14 +32,14 @@ class Animation extends React.Component {
     this.rAF = requestAnimationFrame(this.updateAnimationState);
     const currentTime = new Date();
     const deltaTime = currentTime-this.lastTime;
- 
+    
     
     if (deltaTime > 15 ) {
     const deltaTheta=.1;
    
    this.setState({angle:this.state.angle+deltaTheta/5});
  
-     const newR = 150/(1-Math.cos(this.state.angle)/2);
+     const newR = this.p/(1-this.props.eccentricity*Math.cos(this.state.angle));
      this.setState({r:newR});
   
   
@@ -47,7 +53,7 @@ class Animation extends React.Component {
   }
   
   render() {
-    return <Canvas angle={this.state.angle} r={this.state.r} />
+    return <Canvas angle={this.state.angle} r={this.state.r} semi_major_axis={this.props.semi_major_axis} semi_minor_axis={this.props.semi_minor_axis} />
   }
 }
 

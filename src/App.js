@@ -10,6 +10,12 @@ var sectionStyle = {
  backgroundImage: `url(${Background})`
 };
 
+var headerStyle = {
+ width: "100%",
+  height: "33%",
+
+};
+
  
  
 class App extends React.Component {
@@ -17,20 +23,22 @@ class App extends React.Component {
   
   
     return <div style={sectionStyle}>
-    <div>
-  
+         <div stlye={headerStyle}>
+ 
           <h1 className="App">
           Kevin W. Duell
         </h1>
-         <h2 className="App">
+         <h1 className="App">
           email: kdubzot9@gmail.com
-        </h2>
-          <h2 className="App">
+        </h1>
+          <h1 className="App">
           U/I Architect
-        </h2>
+        </h1>
         </div>
-      <Animation semi_major_axis={200} semi_minor_axis={100} eccentricity={.5} fraction={.005} ></Animation>
-    </div>;
+     
+      <Animation semi_major_axis={100} semi_minor_axis={25} eccentricity={.5} fraction={.01} ></Animation>
+      <div>Projects</div>
+    </div>
   }
 }
 export default App;

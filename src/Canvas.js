@@ -17,6 +17,7 @@ class Canvas extends React.Component {
     this.r=this.props.r;
     this.semi_major_axis = this.props.semi_major_axis;
      this.semi_minor_axis = this.props.semi_minor_axis;
+     this.c = Math.sqrt(this.semi_major_axis**2-this.semi_minor_axis**2);
     
 
   }
@@ -28,27 +29,18 @@ class Canvas extends React.Component {
      const me = this.imageRef2.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
-   // console.log(angle);`
+   
     let x = this.props.r*Math.cos(this.props.angle);
-       console.log(x);
-    let y = this.props.r*Math.sin(this.props.angle);
+       let y = this.props.r*Math.sin(this.props.angle);
   
-  
- 
-
-  
-    y+=canvas.height/4;
+   
    ctx.clearRect(0, 0, canvas.width, canvas.height);
  
-     ctx.drawImage(img,x+200 , y);
+     ctx.drawImage(img,x+canvas.width/2-this.c , y+canvas.height/2-me.height/2);
   
 
-     ctx.drawImage(me,canvas.width/2-me.width/2,0);
+     ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
 
-     
-
-    
-   
   }
   
   render() {
