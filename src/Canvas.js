@@ -9,24 +9,27 @@ import pencil from './images/pencil.png';
 class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+  
     this.canvasRef = React.createRef();
-    this.imageRef = React.createRef();
+    this.natoRef = React.createRef();
     this.imageRef2 = React.createRef();
     
-    this.angle = this.props.angle;
-    this.r=this.props.r;
-    this.semi_major_axis = this.props.semi_major_axis;
-     this.semi_minor_axis = this.props.semi_minor_axis;
+ 
+    this.semi_major_axis = 100;
+     this.semi_minor_axis = 25;
      this.c = Math.sqrt(this.semi_major_axis**2-this.semi_minor_axis**2);
-    
+     this.NATO=0;
+     this.item_path=this.props.item_path;
+     console.log(this.props.item_path);
+     
 
   }
   
   componentDidUpdate() {
 
     const canvas = this.canvasRef.current;
-     const img = this.imageRef.current;
+     const img = this.natoRef.current;
+     console.log(img.getAttribute("src"));
      const me = this.imageRef2.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -46,7 +49,7 @@ class Canvas extends React.Component {
   
   render() {
     return <div><canvas width="1000" height="290"  ref={this.canvasRef} > 
-    <img ref={this.imageRef} src={nato} className="hidden" />
+    <img ref={this.natoRef} src={nato} className="hidden" />
     <img ref={this.imageRef2} src={me} className="hidden" />
     </canvas>
    
