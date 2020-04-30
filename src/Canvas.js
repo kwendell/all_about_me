@@ -12,15 +12,21 @@ class Canvas extends React.Component {
   
     this.canvasRef = React.createRef();
     this.natoRef = React.createRef();
-    this.imageRef2 = React.createRef();
+    this.meRef = React.createRef();
+    this.pencilRef = React.createRef();
     
  
-    this.semi_major_axis = 100;
-     this.semi_minor_axis = 25;
-     this.c = Math.sqrt(this.semi_major_axis**2-this.semi_minor_axis**2);
-     this.NATO=0;
+    this.semi_major_axis = this.props.semi_major_axis;
+    
+   
+     const semi_minor_axis = this.semi_major_axis*this.props.eccentricity;
+    
+   
+     this.c = Math.sqrt(this.semi_major_axis**2-semi_minor_axis**2);
+    
      this.item_path=this.props.item_path;
-     console.log(this.props.item_path);
+    
+   
      
 
   }
@@ -28,9 +34,9 @@ class Canvas extends React.Component {
   componentDidUpdate() {
 
     const canvas = this.canvasRef.current;
-     const img = this.natoRef.current;
-     console.log(img.getAttribute("src"));
-     const me = this.imageRef2.current;
+     const natoImg = this.natoRef.current;
+     const pencilImg = this.pencilRef.current;
+     const me = this.meRef.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
    
@@ -40,7 +46,9 @@ class Canvas extends React.Component {
    
    ctx.clearRect(0, 0, canvas.width, canvas.height);
  
-     ctx.drawImage(img,x+canvas.width/2-this.c , y+canvas.height/2-me.height/2);
+     ctx.drawImage(natoImg,x+canvas.width/2-this.c , y+canvas.height/2-me.height/2);
+     
+       ctx.drawImage(pencilImg,x+canvas.width/2-this.c+20 , y+canvas.height/2-me.height/2+20);
   
 
      ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
@@ -50,7 +58,8 @@ class Canvas extends React.Component {
   render() {
     return <div><canvas width="1000" height="290"  ref={this.canvasRef} > 
     <img ref={this.natoRef} src={nato} className="hidden" />
-    <img ref={this.imageRef2} src={me} className="hidden" />
+    <img ref={this.pencilRef} src={pencil} className="hidden" />
+    <img ref={this.meRef} src={me} className="hidden" />
     </canvas>
    
     </div>;

@@ -57,7 +57,7 @@ class Animation extends React.Component {
   }
   
   render() {
-    return <Canvas angle={this.state.angle} r={this.state.r} item_path={this.ellipseParms[0].item_path}  />
+    return <Canvas angle={this.state.angle} r={this.state.r} item_path={this.ellipseParms[0].item_path} semi_major_axis={this.ellipseParms[0].semi_major_axis} eccentricity={this.ellipseParms[0].eccentricity} />
   }
 }
 
