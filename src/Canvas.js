@@ -46,13 +46,7 @@ class Canvas extends React.Component {
    
    ctx.clearRect(0, 0, canvas.width, canvas.height);
  
-     ctx.drawImage(natoImg,x+canvas.width/2-this.c , y+canvas.height/2-me.height/2);
-     
-       ctx.drawImage(pencilImg,x+canvas.width/2-this.c+20 , y+canvas.height/2-me.height/2+20);
-  
-
-     ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
-
+   
   }
   
   render() {

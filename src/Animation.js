@@ -12,7 +12,8 @@ class Animation extends React.Component {
     this.natoRef = React.createRef();
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
-    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,item_path:"./images/NATO.png"}];
+    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.05}];
+    this.ellipseParms[0].reference=this.natoRef;
    this.state = { angle: 0, r:100 };
   
     this.item_path=this.ellipseParms.item_path;
@@ -49,40 +50,38 @@ class Animation extends React.Component {
    
     
     if (deltaTime > 15 ) {
-      const deltaTheta=.1;
+      const deltaTheta=this.ellipseParms[0].deltaTheta;
    
-     this.setState({angle:this.state.angle+deltaTheta/5});
+     this.setState({angle:this.state.angle+deltaTheta});
    
 
-      const newR = this.p/(1-this.eccentricity*Math.cos(this.state.angle));
+      const newR = this.p/(1-this.ellipseParms[0].eccentricity*Math.cos(this.state.angle));
       this.setState({r:newR});
       
-      //console.log(this.state.angle);
-   
-  
+ 
       this.lastTime=currentTime;
       
       // Get the contexts
         const canvas = this.canvasRef.current;
-     const natoImg = this.natoRef.current;
-     const pencilImg = this.pencilRef.current;
-     const me = this.meRef.current;
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
+ 
+      const pencilImg = this.pencilRef.current;
+    
+      const me = this.meRef.current;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
     
       const x = this.state.r*Math.cos(this.state.angle);
-       const y = this.state.r*Math.sin(this.state.angle);
+      const y = this.state.r*Math.sin(this.state.angle);
         
-    const semi_minor_axis = this.ellipseParms[0].semi_major_axis*this.ellipseParms[0].eccentricity;
+      const semi_minor_axis = this.ellipseParms[0].semi_major_axis*this.ellipseParms[0].eccentricity;
     
  
-     const c = Math.sqrt(this.ellipseParms[0].semi_major_axis**2-semi_minor_axis**2);
+      const c = Math.sqrt(this.ellipseParms[0].semi_major_axis**2-semi_minor_axis**2);
   
-   ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-   
-      // ctx.drawImage(natoImg,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
-      ctx.drawImage(natoImg,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
+  
+      ctx.drawImage(pencilImg,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
   
     
   ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
