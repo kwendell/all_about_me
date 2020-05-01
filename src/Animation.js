@@ -48,7 +48,7 @@ class Animation extends React.Component {
     const currentTime = new Date();
     const deltaTime = currentTime-this.lastTime;
    
-    
+    this.ellipseParms[0].reference = this.pencilRef.current;
     if (deltaTime > 15 ) {
       const deltaTheta=this.ellipseParms[0].deltaTheta;
    
@@ -64,7 +64,7 @@ class Animation extends React.Component {
       // Get the contexts
         const canvas = this.canvasRef.current;
  
-      const pencilImg = this.pencilRef.current;
+       
     
       const me = this.meRef.current;
       const ctx = canvas.getContext('2d');
@@ -81,7 +81,7 @@ class Animation extends React.Component {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   
-      ctx.drawImage(pencilImg,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[0].reference,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
   
     
   ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
