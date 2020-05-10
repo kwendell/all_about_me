@@ -28,7 +28,7 @@ class Animation extends React.Component {
     this.eccentricity = .5;
 
 
-    this.p=this.state.r*(1-this.eccentricity**2);
+
 
     this.lastTime=new Date();
 
@@ -49,10 +49,7 @@ class Animation extends React.Component {
     // find the next theta by solution for delta theta.
 
     let elementClone = [...this.state.list];
-  //  playersClone[activePlayer].cards = [
-  //      ...playersClone[activePlayer].cards,
-  //      openedCard
-  //  ];
+
 
     this.rAF = requestAnimationFrame(this.updateAnimationState);
     const currentTime = new Date();
@@ -64,31 +61,27 @@ class Animation extends React.Component {
       const ctx = canvas.getContext('2d');
       //ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i=0;i<this.ellipseParms.length;i++) {
-    if (deltaTime > 15 ) {
+    if (deltaTime > 20 ) {
       const deltaTheta=this.ellipseParms[i].deltaTheta;
-      elementClone[i].angle=deltaTheta+elementClone[i].angle;
+      elementClone[i].angle=deltaTheta+elementClone[i].angle % Math.PI*2;
+       const p=this.ellipseParms[i].semi_major_axis*(1-this.ellipseParms[i].eccentricity**2);
 
-      const newR = this.p/(1-this.ellipseParms[i].eccentricity*Math.cos(this.state.angle));
+      const newR = p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
+
+
       elementClone[i].r=newR;
       //elementClone.
-     // this.setState({r:newR});
-
-    //  this.setState(newR) => {currentElement.r=newR});
-
+     this.setState({list:elementClone});
 
       this.lastTime=currentTime;
-
-      // Get the contexts
-
-
 
 
       const me = this.meRef.current;
 
       canvas.width = window.innerWidth;
 
-      const x = this.state.r*Math.cos(this.state.angle);
-      const y = this.state.r*Math.sin(this.state.angle);
+      const x = this.state.r*Math.cos(this.state.list[i].angle);
+      const y = this.state.r*Math.sin(this.state.list[i].angle);
 
       const semi_minor_axis = this.ellipseParms[i].semi_major_axis*this.ellipseParms[i].eccentricity;
 
@@ -96,9 +89,7 @@ class Animation extends React.Component {
       const c = Math.sqrt(this.ellipseParms[i].semi_major_axis**2-semi_minor_axis**2);
 
 
-
-
-      ctx.drawImage(this.ellipseParms[i].reference,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[0].reference,x+canvas.width/2-c , y+canvas.height/2-me.height/2);
       ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
       }
 
