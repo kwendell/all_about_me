@@ -12,7 +12,7 @@ class Animation extends React.Component {
     this.natoRef = React.createRef();
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
-    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.05},{semi_major_axis:200,eccentricity:.7,reference:null,deltaTheta:.02}];
+    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.01},{semi_major_axis:200,eccentricity:.7,reference:null,deltaTheta:.02}];
     //this.ellipseParms[0].reference=this.natoRef;
 
 
@@ -63,13 +63,15 @@ class Animation extends React.Component {
     for (let i=0;i<this.ellipseParms.length;i++) {
     if (deltaTime > 20 ) {
       const deltaTheta=this.ellipseParms[i].deltaTheta;
-      elementClone[i].angle=deltaTheta+elementClone[i].angle % Math.PI*2;
+    //  console.log(deltaTheta);
+      elementClone[i].angle=deltaTheta+elementClone[i].angle ;
        const p=this.ellipseParms[i].semi_major_axis*(1-this.ellipseParms[i].eccentricity**2);
 
       const newR = p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
 
 
       elementClone[i].r=newR;
+      console.log(elementClone[i].r);
       //elementClone.
      this.setState({list:elementClone});
 
