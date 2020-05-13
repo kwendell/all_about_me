@@ -9,25 +9,34 @@ import pencil from './images/pencil.png';
 class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+  
     this.canvasRef = React.createRef();
-    this.imageRef = React.createRef();
-    this.imageRef2 = React.createRef();
+    this.natoRef = React.createRef();
+    this.meRef = React.createRef();
+    this.pencilRef = React.createRef();
     
-    this.angle = this.props.angle;
-    this.r=this.props.r;
+ 
     this.semi_major_axis = this.props.semi_major_axis;
-     this.semi_minor_axis = this.props.semi_minor_axis;
-     this.c = Math.sqrt(this.semi_major_axis**2-this.semi_minor_axis**2);
     
+   
+     const semi_minor_axis = this.semi_major_axis*this.props.eccentricity;
+    
+   
+     this.c = Math.sqrt(this.semi_major_axis**2-semi_minor_axis**2);
+    
+     this.item_path=this.props.item_path;
+    
+   
+     
 
   }
   
   componentDidUpdate() {
 
     const canvas = this.canvasRef.current;
-     const img = this.imageRef.current;
-     const me = this.imageRef2.current;
+     const natoImg = this.natoRef.current;
+     const pencilImg = this.pencilRef.current;
+     const me = this.meRef.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
    
@@ -37,17 +46,14 @@ class Canvas extends React.Component {
    
    ctx.clearRect(0, 0, canvas.width, canvas.height);
  
-     ctx.drawImage(img,x+canvas.width/2-this.c , y+canvas.height/2-me.height/2);
-  
-
-     ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
-
+   
   }
   
   render() {
     return <div><canvas width="1000" height="290"  ref={this.canvasRef} > 
-    <img ref={this.imageRef} src={nato} className="hidden" />
-    <img ref={this.imageRef2} src={me} className="hidden" />
+    <img ref={this.natoRef} src={nato} className="hidden" />
+    <img ref={this.pencilRef} src={pencil} className="hidden" />
+    <img ref={this.meRef} src={me} className="hidden" />
     </canvas>
    
     </div>;
