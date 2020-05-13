@@ -1,5 +1,5 @@
 import React from 'react';
-import me from './images/meTransparent.png';
+
 import './App.css';
 import Animation from './Animation.js'
 import Background from './images/graph_paper.png';
@@ -16,15 +16,15 @@ var headerStyle = {
 
 };
 
- 
- 
+
+
 class App extends React.Component {
   render() {
-  
-  
+
+
     return <div style={sectionStyle}>
          <div stlye={headerStyle}>
- 
+
           <h1 className="App">
           Kevin W. Duell
         </h1>
@@ -35,7 +35,7 @@ class App extends React.Component {
           U/I Architect
         </h1>
         </div>
-     
+
       <Animation   ></Animation>
       <div>Projects</div>
     </div>
