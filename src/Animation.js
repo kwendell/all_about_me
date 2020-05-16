@@ -12,26 +12,22 @@ class Animation extends React.Component {
     this.natoRef = React.createRef();
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
-    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.01},
-      {semi_major_axis:200,eccentricity:.7,reference:null,deltaTheta:.03}];
-    //this.ellipseParms[0].reference=this.natoRef;
+    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:Math.PI/4,rotation_y:0,rotation_z:0},
+      {semi_major_axis:400,eccentricity:.7,reference:null,deltaTheta:.03,rotation_x:0,rotation_y:0,rotation_z:Math.PI/2}];
 
-
+    this.computeRotation();
     this.state = {
       list: [{angle: 0, r:100},{angle: 20, r:100}],
     };
 
     this.item_path=this.ellipseParms.item_path;
-
-
     this.updateAnimationState = this.updateAnimationState.bind(this);
-
-
-
-
-
+    this.computeRotation = this.computeRotation.bind(this);
     this.lastTime=new Date();
 
+  }
+  computeRotation() {
+    console.log("computeRotation");
   }
 
   componentDidMount() {
@@ -59,9 +55,9 @@ class Animation extends React.Component {
     this.ellipseParms[1].reference = this.pencilRef.current;
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
-  const me = this.meRef.current;
-  var x = new Array(2);
-  var y = new Array(2);
+    const me = this.meRef.current;
+    var x = new Array(2);
+    var y = new Array(2);
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 5 ) {
 
