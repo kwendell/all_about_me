@@ -20,14 +20,22 @@ class Animation extends React.Component {
       list: [{angle: 0, r:100},{angle: 20, r:100}],
     };
 
+
     this.item_path=this.ellipseParms.item_path;
     this.updateAnimationState = this.updateAnimationState.bind(this);
     this.computeRotation = this.computeRotation.bind(this);
+
     this.lastTime=new Date();
 
   }
   computeRotation() {
     console.log("computeRotation");
+    for (const element of this.ellipseParms) {
+      console.log(element.rotation_x);
+      console.log(element.rotation_y);
+      console.log(element.rotation_z);
+      console.log("-----");
+    }
   }
 
   componentDidMount() {
@@ -75,7 +83,7 @@ class Animation extends React.Component {
         y[i] = this.state.r*Math.sin(this.state.list[i].angle);
 
         const semi_minor_axis = this.ellipseParms[i].semi_major_axis*this.ellipseParms[i].eccentricity;
-        const c = Math.sqrt(this.ellipseParms[i].semi_major_axis**2-semi_minor_axis**2);
+      //  const c = Math.sqrt(this.ellipseParms[i].semi_major_axis**2-semi_minor_axis**2);
       //  console.log(x[i]);
 
 
