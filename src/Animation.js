@@ -30,19 +30,37 @@ class Animation extends React.Component {
   }
   computeRotation() {
     console.log("computeRotation");
+    const rotationMatrices = [];
     for (const element of this.ellipseParms) {
-      console.log(element.rotation_x);
-      console.log(element.rotation_y);
-      console.log(element.rotation_z);
-      console.log("-----");
 
-  
-    let Rx = [
-    [1, 0,0],
-    [0, Math.cos(element.rotation_x),-Math.sin(element.rotation_x)],
-    [0, Math.sin(element.rotation_x),Math.cos(element.rotation_x)]
+
+
+    let R = [
+    [ Math.cos(element.rotation_z)*Math.cos(element.rotation_y),
+      Math.cos(element.rotation_z)*Math.sin(element.rotation_y)*Math.sin(element.rotation_x)-Math.sin(element.rotation_z)*Math.cos(element.rotation_x),
+      Math.cos(element.rotation_z)*Math.sin(element.rotation_y)*Math.cos(element.rotation_x)+Math.sin(element.rotation_z)*Math.sin(element.rotation_y)],
+    [ Math.sin(element.rotation_z)*Math.cos(element.rotation_y),
+      Math.sin(element.rotation_z)*Math.sin(element.rotation_y)*Math.sin(element.rotation_z)+Math.cos(element.rotation_z)*Math.cos(element.rotation_x),
+      Math.sin(element.rotation_z)*Math.sin(element.rotation_y)*Math.cos(element.rotation_x)-Math.cos(element.rotation_z)*Math.sin(element.rotation_y)],
+    [-Math.sin(element.rotation_y),
+      Math.cos(element.rotation_y)*Math.sin(element.rotation_x),
+      Math.cos(element.rotation_y)*Math.cos(element.rotation_x)]
     ];
+    rotationMatrices.push(R);
 
+
+
+    }
+
+    for (const element of rotationMatrices)  {
+      for (let rowIter=0;rowIter<element.length;rowIter++)   {
+        for (let colIter=0;colIter<element[rowIter].length;colIter++)   {
+console.log(element[rowIter][colIter])
+        }
+        console.log("+")
+
+      }
+        console.log("------")
     }
 
 
