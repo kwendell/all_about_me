@@ -35,7 +35,17 @@ class Animation extends React.Component {
       console.log(element.rotation_y);
       console.log(element.rotation_z);
       console.log("-----");
+
+  
+    let Rx = [
+    [1, 0,0],
+    [0, Math.cos(element.rotation_x),-Math.sin(element.rotation_x)],
+    [0, Math.sin(element.rotation_x),Math.cos(element.rotation_x)]
+    ];
+
     }
+
+
   }
 
   componentDidMount() {
