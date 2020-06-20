@@ -7,13 +7,13 @@ import pencil from './images/pencil.png';
 class Animation extends React.Component {
   constructor(props) {
     super(props);
-
+    this.rotationMatrices = [];
      this.canvasRef = React.createRef();
     this.natoRef = React.createRef();
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
-    this.ellipseParms = [{semi_major_axis:100,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:Math.PI/4,rotation_y:0,rotation_z:0},
-      {semi_major_axis:400,eccentricity:.7,reference:null,deltaTheta:.03,rotation_x:0,rotation_y:0,rotation_z:Math.PI/2}];
+    this.ellipseParms = [{semi_major_axis:100,eccentricity:.9,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0},
+      {semi_major_axis:100,eccentricity:.1,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
 
     this.computeRotation();
     this.state = {
@@ -23,14 +23,15 @@ class Animation extends React.Component {
 
     this.item_path=this.ellipseParms.item_path;
     this.updateAnimationState = this.updateAnimationState.bind(this);
+    this.rotate = this.rotate.bind(this);
     this.computeRotation = this.computeRotation.bind(this);
 
     this.lastTime=new Date();
 
   }
   computeRotation() {
-    console.log("computeRotation");
-    const rotationMatrices = [];
+
+
     for (const element of this.ellipseParms) {
 
 
@@ -46,24 +47,25 @@ class Animation extends React.Component {
       Math.cos(element.rotation_y)*Math.sin(element.rotation_x),
       Math.cos(element.rotation_y)*Math.cos(element.rotation_x)]
     ];
-    rotationMatrices.push(R);
-
-
+    this.rotationMatrices.push(R);
 
     }
 
-    for (const element of rotationMatrices)  {
-      for (let rowIter=0;rowIter<element.length;rowIter++)   {
-        for (let colIter=0;colIter<element[rowIter].length;colIter++)   {
-console.log(element[rowIter][colIter])
-        }
-        console.log("+")
-
-      }
-        console.log("------")
-    }
 
 
+  }
+
+  rotate(x,y,z,rotationMatrix) {
+      const position = [x,y,z];
+      let position_rotated = [0,0,0];
+
+         for (let row=0;row<position.length;row++)  {
+           for (let col=0;col<rotationMatrix[row].length;col++)  {
+             position_rotated[row]+=rotationMatrix[row][col]*position[col];
+           }
+         }
+    //  console.log(position_rotated[0]+", "+position_rotated[1]+", "+position_rotated[2]);
+    return position_rotated;
   }
 
   componentDidMount() {
@@ -92,8 +94,11 @@ console.log(element[rowIter][colIter])
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
+    var position = new Array(3);
     var x = new Array(2);
     var y = new Array(2);
+    var z = new Array(2);
+    const rotated = [[],[]];
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 5 ) {
 
@@ -107,8 +112,15 @@ console.log(element[rowIter][colIter])
 
         canvas.width = window.innerWidth;
 
-        x[i] = this.state.r*Math.cos(this.state.list[i].angle);
-        y[i] = this.state.r*Math.sin(this.state.list[i].angle);
+
+
+
+
+        x[i] = newR*Math.cos(elementClone[i].angle);
+        y[i] = newR*Math.sin(elementClone[i].angle);
+        z[i] = 0;
+
+        rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
 
         const semi_minor_axis = this.ellipseParms[i].semi_major_axis*this.ellipseParms[i].eccentricity;
       //  const c = Math.sqrt(this.ellipseParms[i].semi_major_axis**2-semi_minor_axis**2);
@@ -116,9 +128,9 @@ console.log(element[rowIter][colIter])
 
 
       }
-      ctx.drawImage(this.ellipseParms[0].reference,x[0]+canvas.width/2 , y[0]+canvas.height/2-me.height/2);
-        ctx.drawImage(this.ellipseParms[1].reference,x[1]+canvas.width/2 , y[1]+canvas.height/2-me.height/2);
-       ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[0].reference,rotated[0][0]+canvas.width/2 , rotated[0][1]+canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[1].reference,rotated[1][0]+canvas.width/2 , rotated[1][1]+canvas.height/2-me.height/2);
+      ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
 
 
 //this.setState({list:elementClone})
