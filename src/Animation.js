@@ -13,11 +13,11 @@ class Animation extends React.Component {
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
     this.ellipseParms = [{semi_major_axis:100,eccentricity:.9,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0},
-      {semi_major_axis:100,eccentricity:.1,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
+      {semi_major_axis:100,eccentricity:.9,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
 
     this.computeRotation();
     this.state = {
-      list: [{angle: 0, r:100},{angle: 20, r:100}],
+      list: [{angle: 0, r:100},{angle: 0, r:100}],
     };
 
 
@@ -34,7 +34,7 @@ class Animation extends React.Component {
 
     for (const element of this.ellipseParms) {
 
-
+// set up the rotations
 
     let R = [
     [ Math.cos(element.rotation_z)*Math.cos(element.rotation_y),
@@ -70,7 +70,7 @@ class Animation extends React.Component {
 
   componentDidMount() {
     this.rAF = requestAnimationFrame(this.updateAnimationState);
-    this.setState({r:this.ellipseParms[0].semi_major_axis});
+    //this.setState({r:this.ellipseParms[0].semi_major_axis});
 //    this.setState({angle:0});
   }
 
@@ -100,36 +100,25 @@ class Animation extends React.Component {
     var z = new Array(2);
     const rotated = [[],[]];
     for (let i=0;i<this.ellipseParms.length;i++) {
-      if (deltaTime > 5 ) {
+      if (deltaTime > 2 ) {
 
         const deltaTheta=this.ellipseParms[i].deltaTheta;
         elementClone[i].angle=deltaTheta+elementClone[i].angle ;
         const p=this.ellipseParms[i].semi_major_axis*(1-this.ellipseParms[i].eccentricity**2);
-        const newR = p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
-
-        elementClone[i].r=newR;
+        elementClone[i].r= p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
         this.lastTime=currentTime;
 
         canvas.width = window.innerWidth;
 
-
-
-
-
-        x[i] = newR*Math.cos(elementClone[i].angle);
-        y[i] = newR*Math.sin(elementClone[i].angle);
+        x[i] = elementClone[i].r*Math.cos(elementClone[i].angle);
+        y[i] = elementClone[i].r*Math.sin(elementClone[i].angle);
         z[i] = 0;
-
+        // Rotate the coordinates
         rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
 
-        const semi_minor_axis = this.ellipseParms[i].semi_major_axis*this.ellipseParms[i].eccentricity;
-      //  const c = Math.sqrt(this.ellipseParms[i].semi_major_axis**2-semi_minor_axis**2);
-      //  console.log(x[i]);
-
-
       }
-      ctx.drawImage(this.ellipseParms[0].reference,rotated[0][0]+canvas.width/2 , rotated[0][1]+canvas.height/2-me.height/2);
-      ctx.drawImage(this.ellipseParms[1].reference,rotated[1][0]+canvas.width/2 , rotated[1][1]+canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[0].reference,x[0]+canvas.width/2 -this.ellipseParms[0].semi_major_axis , y[0]+canvas.height/2-me.height/2);
+      ctx.drawImage(this.ellipseParms[1].reference,x[1]+canvas.width/2 -this.ellipseParms[1].semi_major_axis, y[1]+canvas.height/2-me.height/2);
       ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
 
 
