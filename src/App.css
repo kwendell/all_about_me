@@ -28,7 +28,21 @@ display:none;
 
 .column {
   float: left;
-  width: 33.00%;
+  width: 25%;
+  padding: 10px;
+  //height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.sticky {
+  float: left;
+  width: 200px;
+  padding: 10px;
+  //height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.column-fillremainder {
+  float: left;
+  width: 100%;
   padding: 10px;
   //height: 300px; /* Should be removed. Only for demonstration */
 }

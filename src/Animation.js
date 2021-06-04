@@ -112,8 +112,8 @@ class Animation extends React.Component {
         elementClone[i].r= p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
         this.lastTime=currentTime;
 
-       // canvas.width = .40*window.innerWidth;
-        canvas.width = 600;
+       canvas.width = window.innerWidth;
+       
         canvas.height = 240;
 
         x[i] = elementClone[i].r*Math.cos(elementClone[i].angle);
