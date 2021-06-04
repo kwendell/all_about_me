@@ -3,10 +3,14 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 .App {
-  text-align: center;
+  text-align: left;
  font-family: 'Reenie Beanie', cursive;
 
 
+}
+li {
+ text-align: left;
+ font-family: 'Reenie Beanie', cursive;
 }
 
 h1 {
@@ -14,12 +18,26 @@ margin: auto
 }
 
 .canvas {
-width:100%;
-height:30%;
+
+height:25%;
 }
 
 .hidden {
 display:none;
+}
+
+.column {
+  float: left;
+  width: 33.00%;
+  padding: 10px;
+  //height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
@@ -40,6 +58,7 @@ display:none;
   font-size: calc(10px + 2vmin);
   color: white;
 }
+canvas.dotted {border-style: dotted}
 
 .App-link {
   color: #61dafb;

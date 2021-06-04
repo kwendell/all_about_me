@@ -13,13 +13,13 @@ class Animation extends React.Component {
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
     this.ellipseParms = [{semi_major_axis:125,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:0},
-      {semi_major_axis:100,eccentricity:.2,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
+      {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
   const k = 1.0737e-5;
     this.ellipseParms[0].deltaTheta=k*Math.sqrt(this.ellipseParms[0].semi_major_axis**3);
     this.ellipseParms[1].deltaTheta=k*Math.sqrt(this.ellipseParms[1].semi_major_axis**3);
     this.computeRotation();
     this.state = {
-      list: [{angle: 0, r:100},{angle: 0, r:100}],
+      list: [{angle: 180, r:100},{angle: 0, r:100}],
     };
 
 
@@ -104,7 +104,7 @@ class Animation extends React.Component {
     var z = new Array(2);
     const rotated = [[],[]];
     for (let i=0;i<this.ellipseParms.length;i++) {
-      if (deltaTime > 2 ) {
+      if (deltaTime > 1 ) {
 
         const deltaTheta=this.ellipseParms[i].deltaTheta;
         elementClone[i].angle=deltaTheta+elementClone[i].angle ;
@@ -112,11 +112,15 @@ class Animation extends React.Component {
         elementClone[i].r= p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
         this.lastTime=currentTime;
 
-        canvas.width = window.innerWidth;
+       // canvas.width = .40*window.innerWidth;
+        canvas.width = 600;
+        canvas.height = 240;
 
         x[i] = elementClone[i].r*Math.cos(elementClone[i].angle);
         y[i] = elementClone[i].r*Math.sin(elementClone[i].angle);
         z[i] = 0;
+
+      
         // Rotate the coordinates
         rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
 
@@ -151,7 +155,8 @@ class Animation extends React.Component {
   }
 
     render() {
-    return <div><canvas width="1000" height="290"  ref={this.canvasRef} >
+    return <div><canvas  height="290"  ref={this.canvasRef} class="dotted" >
+
     <img ref={this.natoRef} src={nato} className="hidden" alt="NATO"/>
     <img ref={this.pencilRef} src={pencil} className="hidden"  alt="pencil"/>
     <img ref={this.meRef} src={me} className="hidden" alt="just me" />

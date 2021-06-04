@@ -23,21 +23,28 @@ class App extends React.Component {
 
 
     return <div style={sectionStyle}>
-         <div stlye={headerStyle}>
+         <div style={headerStyle}>
+           <div class="row">
+             <div class="column">
+             <h1 className="App">Kevin W. Duell</h1>
+             <h1 className="App">email: kdubzot9@gmail.com</h1>
+             <h1 className="App">Role:  U/I Architect</h1>
+             <h1 className="App">Phone:  (408) 234-7820</h1>
+             </div>
+             <div class="column">
+                           <Animation   ></Animation>
+             </div>
+           </div>
+             <div class="row">
+               <div class="column">
+               content
+               </div>
+               </div>
 
-          <h1 className="App">
-          Kevin W. Duell
-        </h1>
-         <h1 className="App">
-          email: kdubzot9@gmail.com
-        </h1>
-          <h1 className="App">
-          U/I Architect
-        </h1>
         </div>
 
-      <Animation   ></Animation>
-      <div>Projects</div>
+     
+      
     </div>
   }
 }
