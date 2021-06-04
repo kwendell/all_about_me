@@ -4,6 +4,7 @@ import React from 'react';
 import me from './images/meTransparent.png';
 import nato from './images/NATO.png';
 import pencil from './images/pencil.png';
+import java from './images/java.png';
 class Animation extends React.Component {
   constructor(props) {
     super(props);
@@ -12,14 +13,17 @@ class Animation extends React.Component {
     this.natoRef = React.createRef();
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
+	this.javaRef = React.createRef();
     this.ellipseParms = [{semi_major_axis:125,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:0},
-      {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0}];
+                          {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0},
+						  {semi_major_axis:80,eccentricity:.9,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0}];
   const k = 1.0737e-5;
     this.ellipseParms[0].deltaTheta=k*Math.sqrt(this.ellipseParms[0].semi_major_axis**3);
     this.ellipseParms[1].deltaTheta=k*Math.sqrt(this.ellipseParms[1].semi_major_axis**3);
+	this.ellipseParms[2].deltaTheta=k*Math.sqrt(this.ellipseParms[2].semi_major_axis**3);
     this.computeRotation();
     this.state = {
-      list: [{angle: 180, r:100},{angle: 0, r:100}],
+      list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100}],
     };
 
 
@@ -93,16 +97,18 @@ class Animation extends React.Component {
 
     this.ellipseParms[0].reference = this.natoRef.current;
     this.ellipseParms[1].reference = this.pencilRef.current;
+	this.ellipseParms[2].reference = this.javaRef.current;
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
     const pencil = this.pencilRef.current;
     const nato = this.natoRef.current;
+	 const java = this.javaRef.current;
     var position = new Array(3);
     var x = new Array(2);
     var y = new Array(2);
     var z = new Array(2);
-    const rotated = [[],[]];
+    const rotated = [[],[],[]];
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
 
@@ -114,7 +120,7 @@ class Animation extends React.Component {
 
        canvas.width = window.innerWidth;
        
-        canvas.height = 240;
+      //  canvas.height = 240;
 
         x[i] = elementClone[i].r*Math.cos(elementClone[i].angle);
         y[i] = elementClone[i].r*Math.sin(elementClone[i].angle);
@@ -131,9 +137,11 @@ class Animation extends React.Component {
 
       semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
       semi_minor_axis[1]=this.ellipseParms[1].semi_major_axis*Math.sqrt((1-this.ellipseParms[1].eccentricity**2));
+	  semi_minor_axis[2]=this.ellipseParms[2].semi_major_axis*Math.sqrt((1-this.ellipseParms[2].eccentricity**2));
 
       foci[0]=Math.sqrt(this.ellipseParms[0].semi_major_axis**2 - semi_minor_axis[0]**2);
       foci[1]=Math.sqrt(this.ellipseParms[1].semi_major_axis**2 - semi_minor_axis[1]**2);
+	  foci[2]=Math.sqrt(this.ellipseParms[2].semi_major_axis**2 - semi_minor_axis[2]**2);
 
       ctx.drawImage(this.ellipseParms[0].reference,
         rotated[0][0]+canvas.width/2 -this.ellipseParms[0].semi_major_axis-foci[0]+me.width/2 ,
@@ -141,6 +149,12 @@ class Animation extends React.Component {
       ctx.drawImage(this.ellipseParms[1].reference,
         rotated[1][0]+canvas.width/2 -this.ellipseParms[1].semi_major_axis-foci[1]+me.width/2,
         rotated[1][1]+canvas.height/2-pencil.height/2);
+		
+	   ctx.drawImage(this.ellipseParms[2].reference,
+        rotated[2][0]+canvas.width/2 -this.ellipseParms[2].semi_major_axis-foci[2]+me.width/2,
+        rotated[2][1]+canvas.height/2-java.height/2);
+		
+	
       ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
 
 
@@ -155,10 +169,11 @@ class Animation extends React.Component {
   }
 
     render() {
-    return <div><canvas  height="290"  ref={this.canvasRef} class="dotted" >
+    return <div><canvas  height="300"  ref={this.canvasRef} class="dotted" >
 
     <img ref={this.natoRef} src={nato} className="hidden" alt="NATO"/>
     <img ref={this.pencilRef} src={pencil} className="hidden"  alt="pencil"/>
+	<img ref={this.javaRef} src={java} className="hidden" alt="JAVA"/>
     <img ref={this.meRef} src={me} className="hidden" alt="just me" />
     </canvas>
 
