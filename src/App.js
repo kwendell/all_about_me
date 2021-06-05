@@ -35,6 +35,7 @@ class App extends React.Component {
              <h1 className="App">email: kdubzot9@gmail.com</h1>
              <h1 className="App">Role:  U/I Architect</h1>
              <h1 className="App">Phone:  (408) 234-7820</h1> 
+			   <h1 className="App">Github:  kwendell</h1> 
              </div>
            </div>
 		     <div class="row">  <Animation ></Animation></div>

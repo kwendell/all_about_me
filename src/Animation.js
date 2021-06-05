@@ -16,11 +16,11 @@ class Animation extends React.Component {
 	this.javaRef = React.createRef();
     this.ellipseParms = [{semi_major_axis:125,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:0},
                           {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0},
-						  {semi_major_axis:80,eccentricity:.9,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0}];
-  const k = 1.0737e-5;
-    this.ellipseParms[0].deltaTheta=k*Math.sqrt(this.ellipseParms[0].semi_major_axis**3);
-    this.ellipseParms[1].deltaTheta=k*Math.sqrt(this.ellipseParms[1].semi_major_axis**3);
-	this.ellipseParms[2].deltaTheta=k*Math.sqrt(this.ellipseParms[2].semi_major_axis**3);
+						  {semi_major_axis:100,eccentricity:.01,reference:null,deltaTheta:.01,rotation_x:.1,rotation_y:.5,rotation_z:0}];
+    const k = 7.407e-4;
+    this.ellipseParms[0].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[0].semi_major_axis**3));
+    this.ellipseParms[1].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[1].semi_major_axis**3));
+	this.ellipseParms[2].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[2].semi_major_axis**3));
     this.computeRotation();
     this.state = {
       list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100}],
@@ -132,7 +132,7 @@ class Animation extends React.Component {
 
       }
 
-      const semi_minor_axis = new Array(2);
+      const semi_minor_axis = new Array(3);
       const foci = new Array(2);
 
       semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
@@ -151,7 +151,7 @@ class Animation extends React.Component {
         rotated[1][1]+canvas.height/2-pencil.height/2);
 		
 	   ctx.drawImage(this.ellipseParms[2].reference,
-        rotated[2][0]+canvas.width/2 -this.ellipseParms[2].semi_major_axis-foci[2]+me.width/2,
+        rotated[2][0]+canvas.width/2 -this.ellipseParms[2].semi_major_axis/*-foci[2]*/+me.width/2,
         rotated[2][1]+canvas.height/2-java.height/2);
 		
 	
