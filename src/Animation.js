@@ -16,8 +16,8 @@ class Animation extends React.Component {
 	this.javaRef = React.createRef();
     this.ellipseParms = [{semi_major_axis:125,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:0},
                           {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0},
-						  {semi_major_axis:100,eccentricity:.01,reference:null,deltaTheta:.01,rotation_x:.1,rotation_y:.5,rotation_z:0}];
-    const k = 7.407e-4;
+						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0}];
+    const k = 7.407e-3;
     this.ellipseParms[0].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[0].semi_major_axis**3));
     this.ellipseParms[1].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[1].semi_major_axis**3));
 	this.ellipseParms[2].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[2].semi_major_axis**3));
@@ -151,7 +151,7 @@ class Animation extends React.Component {
         rotated[1][1]+canvas.height/2-pencil.height/2);
 		
 	   ctx.drawImage(this.ellipseParms[2].reference,
-        rotated[2][0]+canvas.width/2 -this.ellipseParms[2].semi_major_axis/*-foci[2]*/+me.width/2,
+        rotated[2][0]+canvas.width/2-me.width/2 +this.ellipseParms[2].semi_major_axis/2-java.width/2,
         rotated[2][1]+canvas.height/2-java.height/2);
 		
 	
