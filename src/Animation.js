@@ -111,6 +111,8 @@ class Animation extends React.Component {
     const rotated = [[],[],[]];
 	const originalNatoWidth = nato.width;
 	const originalNatoHeight = nato.height;
+	const originalPencilWidth = pencil.width;
+	const originalPencilHeight = pencil.height;
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
 
@@ -141,6 +143,7 @@ class Animation extends React.Component {
       const foci = new Array(2);
 	  const xOffsets = new Array(3);
 	  const yOffsets = new Array(3);
+	  const incrementalScales = new Array(this.ellipseParms.length);
 
       semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
       semi_minor_axis[1]=this.ellipseParms[1].semi_major_axis*Math.sqrt((1-this.ellipseParms[1].eccentricity**2));
@@ -153,20 +156,21 @@ class Animation extends React.Component {
 	  
 	  xOffsets[0] = canvas.width/2 - 2*foci[0]*Math.cos(this.ellipseParms[0].rotation_z) ;
 	  yOffsets[0] = canvas.height/2 - 2*foci[0]*Math.sin(this.ellipseParms[0].rotation_z)  ;
-		var incrementalScale = rotated[0][2]/(canvas.width/4)+1;
+	  incrementalScales[0] = rotated[0][2]/(canvas.width/4)+1;
 
       ctx.drawImage(this.ellipseParms[0].reference,
         rotated[0][0]+xOffsets[0]- nato.width/2,
-        rotated[0][1]+yOffsets[0]- nato.height/2,incrementalScale*originalNatoWidth,incrementalScale*originalNatoHeight);
+        rotated[0][1]+yOffsets[0]- nato.height/2,incrementalScales[0]*originalNatoWidth,incrementalScales[0]*originalNatoHeight);
 		
 	
       
-	//  xOffsets[1] = canvas.width/2 - 2*foci[1]*Math.cos(this.ellipseParms[1].rotation_z) ;
-	 // yOffsets[1] = canvas.height/2 - 2*foci[1]*Math.sin(this.ellipseParms[1].rotation_z)  ;
+	  xOffsets[1] = canvas.width/2 - 2*foci[1]*Math.cos(this.ellipseParms[1].rotation_z) ;
+	  yOffsets[1] = canvas.height/2 - 2*foci[1]*Math.sin(this.ellipseParms[1].rotation_z)  ;
+	  incrementalScales[1] = rotated[1][2]/(canvas.width/4)+1;
 	  
-	   // ctx.drawImage(this.ellipseParms[1].reference,
-       // rotated[1][0]+xOffsets[1]- pencil.width/2,
-       // rotated[1][1]+yOffsets[1]- pencil.height/2);
+	    ctx.drawImage(this.ellipseParms[1].reference,
+        rotated[1][0]+xOffsets[1]- pencil.width/2,
+        rotated[1][1]+yOffsets[1]- pencil.height/2,incrementalScales[1]*originalPencilWidth,incrementalScales[1]*originalPencilHeight);
       
 	  //ctx.drawImage(this.ellipseParms[1].reference,
        // rotated[1][0]+canvas.width/2  - pencil.width/2 - 2*foci[1],
