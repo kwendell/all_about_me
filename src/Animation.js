@@ -14,7 +14,7 @@ class Animation extends React.Component {
     this.meRef = React.createRef();
     this.pencilRef = React.createRef();
 	this.javaRef = React.createRef();
-    this.ellipseParms = [{semi_major_axis:125,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:0},
+    this.ellipseParms = [{semi_major_axis:150,eccentricity:.7,reference:null,deltaTheta:.015,rotation_x:0,rotation_y:0,rotation_z:90*(Math.PI/180)},
                           {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0},
 						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0}];
     const k = 7.407e-3;
@@ -144,14 +144,15 @@ class Animation extends React.Component {
 	  foci[2]=Math.sqrt(this.ellipseParms[2].semi_major_axis**2 - semi_minor_axis[2]**2);
 
       ctx.drawImage(this.ellipseParms[0].reference,
-        rotated[0][0]+canvas.width/2 -this.ellipseParms[0].semi_major_axis-foci[0]+me.width/2 ,
-        rotated[0][1]+canvas.height/2-me.height/2);
-      ctx.drawImage(this.ellipseParms[1].reference,
-        rotated[1][0]+canvas.width/2 -this.ellipseParms[1].semi_major_axis-foci[1]+me.width/2,
-        rotated[1][1]+canvas.height/2-pencil.height/2);
+        rotated[0][0]+canvas.width/2 - nato.width/2 - 2*foci[0] ,
+        rotated[0][1]+canvas.height/2 - nato.height/2);
+      
+	  ctx.drawImage(this.ellipseParms[1].reference,
+        rotated[1][0]+canvas.width/2  - pencil.width/2 - 2*foci[1],
+        rotated[1][1]+canvas.height/2 - pencil.height/2);
 		
 	   ctx.drawImage(this.ellipseParms[2].reference,
-        rotated[2][0]+canvas.width/2-me.width/2 +this.ellipseParms[2].semi_major_axis/2-java.width/2,
+        rotated[2][0]+canvas.width/2-java.width/2,
         rotated[2][1]+canvas.height/2-java.height/2);
 		
 	
