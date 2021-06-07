@@ -27,7 +27,7 @@ class App extends React.Component {
          <div style={headerStyle}>
            <div class="row">
              <div class="sticky">
-			  <img src={sticky} alt="profile image" />
+			  <img src={sticky} alt="sticky" />
             
              </div>
              <div class="column">

@@ -131,9 +131,12 @@ class Animation extends React.Component {
         rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
 
       }
+	}
 
       const semi_minor_axis = new Array(3);
       const foci = new Array(2);
+	  const xOffsets = new Array(3);
+	  const yOffsets = new Array(3);
 
       semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
       semi_minor_axis[1]=this.ellipseParms[1].semi_major_axis*Math.sqrt((1-this.ellipseParms[1].eccentricity**2));
@@ -143,20 +146,21 @@ class Animation extends React.Component {
       foci[1]=Math.sqrt(this.ellipseParms[1].semi_major_axis**2 - semi_minor_axis[1]**2);
 	  foci[2]=Math.sqrt(this.ellipseParms[2].semi_major_axis**2 - semi_minor_axis[2]**2);
 	  
-	  var xOffset = canvas.width/2 - 2*foci[0]*Math.cos(this.ellipseParms[0].rotation_z) ;
-	  var yOffset = canvas.height/2 - 2*foci[0]*Math.sin(this.ellipseParms[0].rotation_z)  ;
 	  
-	 // console.log(this.ellipseParms[0].rotation_z);
-	   console.log(xOffset+", "+yOffset);
+	  xOffsets[0] = canvas.width/2 - 2*foci[0]*Math.cos(this.ellipseParms[0].rotation_z) ;
+	  yOffsets[0] = canvas.height/2 - 2*foci[0]*Math.sin(this.ellipseParms[0].rotation_z)  ;
 	
-	   
-	  //  console.log(xOffsetPrime+", "+yOffsetPrime);
-	   
-	 
 
       ctx.drawImage(this.ellipseParms[0].reference,
-        rotated[0][0]+xOffset- nato.width/2,
-        rotated[0][1]+yOffset- nato.height/2);
+        rotated[0][0]+xOffsets[0]- nato.width/2,
+        rotated[0][1]+yOffsets[0]- nato.height/2);
+      
+	  xOffsets[1] = canvas.width/2 - 2*foci[1]*Math.cos(this.ellipseParms[1].rotation_z) ;
+	  yOffsets[1] = canvas.height/2 - 2*foci[1]*Math.sin(this.ellipseParms[1].rotation_z)  ;
+	  
+	    ctx.drawImage(this.ellipseParms[1].reference,
+        rotated[1][0]+xOffsets[1]- pencil.width/2,
+        rotated[1][1]+yOffsets[1]- pencil.height/2);
       
 	  //ctx.drawImage(this.ellipseParms[1].reference,
        // rotated[1][0]+canvas.width/2  - pencil.width/2 - 2*foci[1],
@@ -178,7 +182,7 @@ class Animation extends React.Component {
 
 
 
-  }
+  
 
     render() {
     return <div><canvas  height="300"  ref={this.canvasRef} class="dotted" >
