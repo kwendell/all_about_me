@@ -109,10 +109,14 @@ class Animation extends React.Component {
     var y = new Array(2);
     var z = new Array(2);
     const rotated = [[],[],[]];
-	const originalNatoWidth = nato.width;
-	const originalNatoHeight = nato.height;
-	const originalPencilWidth = pencil.width;
-	const originalPencilHeight = pencil.height;
+	const originalWidth = [];
+	const originalHeight = [];
+	
+	originalWidth[0]= nato.width;
+	originalHeight [0] = nato.height;
+	originalWidth[1] = pencil.width;
+	originalHeight[1] = pencil.height;
+	
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
 
@@ -160,7 +164,7 @@ class Animation extends React.Component {
 
       ctx.drawImage(this.ellipseParms[0].reference,
         rotated[0][0]+xOffsets[0]- nato.width/2,
-        rotated[0][1]+yOffsets[0]- nato.height/2,incrementalScales[0]*originalNatoWidth,incrementalScales[0]*originalNatoHeight);
+        rotated[0][1]+yOffsets[0]- nato.height/2,incrementalScales[0]*originalWidth[0],incrementalScales[0]*originalHeight[0]);
 		
 	
       
@@ -170,7 +174,7 @@ class Animation extends React.Component {
 	  
 	    ctx.drawImage(this.ellipseParms[1].reference,
         rotated[1][0]+xOffsets[1]- pencil.width/2,
-        rotated[1][1]+yOffsets[1]- pencil.height/2,incrementalScales[1]*originalPencilWidth,incrementalScales[1]*originalPencilHeight);
+        rotated[1][1]+yOffsets[1]- pencil.height/2,incrementalScales[1]*originalWidth[1],incrementalScales[1]*originalHeight[1]);
       
 	  //ctx.drawImage(this.ellipseParms[1].reference,
        // rotated[1][0]+canvas.width/2  - pencil.width/2 - 2*foci[1],
