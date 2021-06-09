@@ -1,6 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Itim&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 .App {
   text-align: left;
@@ -9,14 +12,23 @@
 
 }
 li {
- text-align: left;
- font-family: 'Reenie Beanie', cursive;
+  text-align: left;
+ font-size: 18px;
+ font-family: 'Cutive Mono';
+  font-weight: bold;
 }
 
 .work-experience-header {
  text-align: left;
- font-size: 42px;
- font-family: 'Reenie Beanie', cursive;
+ font-size: 28px;
+ font-family: 'Cutive Mono';
+  font-weight: bold;
+}
+
+.work-experience-content {
+ text-align: left;
+ font-size: 20px;
+ font-family: 'Special Elite';
   font-weight: bold;
 }
 
@@ -26,7 +38,7 @@ margin: auto
 
 .canvas {
 
-height:25%;
+height:20%;
 }
 
 .hidden {
@@ -37,21 +49,21 @@ display:none;
   float: left;
   width: 25%;
   padding: 10px;
-  //height: 300px; /* Should be removed. Only for demonstration */
+ 
 }
 
 .sticky {
   float: left;
   width: 200px;
   padding: 10px;
-  //height: 300px; /* Should be removed. Only for demonstration */
+
 }
 
 .column-fillremainder {
   float: left;
   width: 100%;
   padding: 10px;
-  //height: 300px; /* Should be removed. Only for demonstration */
+
 }
 
 /* Clear floats after the columns */

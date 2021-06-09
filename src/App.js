@@ -38,7 +38,7 @@ class App extends React.Component {
              <h1 className="App">Phone:  (408) 234-7820</h1> 
 			   <h1 className="App">Github:  kwendell</h1> 
             </div>
-			   <div class="column">  <Animation ></Animation></div>
+			   <div class="column">  <Animation  ></Animation></div>
 			
            </div>
 		  
@@ -46,17 +46,20 @@ class App extends React.Component {
 
         </div>
 		<div >
-		<span class="work-experience-header">Work Experience</span>
-		
-		<ul>
-		<li>Developed desktop authoring tool for the design of digital signage media.
+		<span class="work-experience-header">Store Intelligence (May 2005 – Present)</span>
+		<div >
+		<ul >
+		<li  >Developed authoring tool for the design of digital signage media.
 </li>
-<li>Authored user interface specification documents for both handheld and desktop devices.</li>
-<li>Conducted Customer demos; generated pre-sales artifacts.
+<li>Authored user interface specification documents for handheld and desktop devices.</li>
+<li>Conducted customer demos; generated pre-sales artifacts.
 </li>
-<li>Led retailer integration efforts through successful release.</li>
-<li>Developed and deployed content service for digital signage application; oversaw cloud deployment of content generation service.</li>
+<li>Led retailer integration efforts.</li>
+<li>Authored content generation service for digital signage service; oversaw cloud deployment of content generation service.</li>
+<li>Maintained digital signage content for several retailers.</li>
+<li>Release planning; customer liaison suport.</li>
 		</ul>
+		</div>
 		
 		</div>
 

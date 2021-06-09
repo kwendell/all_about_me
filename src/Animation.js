@@ -204,7 +204,7 @@ class Animation extends React.Component {
   
 
     render() {
-    return <div><canvas  height="300"  ref={this.canvasRef}  >
+    return <div><canvas  height="250"  ref={this.canvasRef}  >
 
     <img ref={this.natoRef} src={nato} className="hidden" alt="NATO"/>
     <img ref={this.pencilRef} src={pencil} className="hidden"  alt="pencil"/>
