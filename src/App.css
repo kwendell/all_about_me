@@ -13,13 +13,20 @@ li {
  font-family: 'Reenie Beanie', cursive;
 }
 
+.work-experience-header {
+ text-align: left;
+ font-size: 20px;
+ font-family: 'Reenie Beanie', cursive;
+  font-weight: bold;
+}
+
 h1 {
 margin: auto
 }
 
 .canvas {
 
-height:25%;
+height:20%;
 }
 
 .hidden {

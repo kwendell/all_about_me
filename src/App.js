@@ -4,6 +4,7 @@ import './App.css';
 import Animation from './Animation.js'
 import Background from './images/graph_paper.png';
 import sticky from './images/profile-on-sticky.png';
+import projects from './images/meProjects.png';
 
 var sectionStyle = {
  width: "100%",
@@ -36,12 +37,26 @@ class App extends React.Component {
              <h1 className="App">Role:  U/I Architect</h1>
              <h1 className="App">Phone:  (408) 234-7820</h1> 
 			   <h1 className="App">Github:  kwendell</h1> 
-             </div>
+            </div>
+			   <div class="column">  <Animation ></Animation></div>
+			
            </div>
-		     <div class="row">  <Animation ></Animation></div>
+		  
            
 
         </div>
+		<div >
+		<span class="work-experience-header">Work Experience</span>
+		
+		<ul>
+		<li>Developed desktop authoring tool for the design of digital signage media.
+</li>
+<li>Authored user interface specification documents for both handheld and desktop devices.</li>
+<li>Customer demos; served as a point of contact for human factors concerns, issues.
+</li>
+		</ul>
+		
+		</div>
 
      
       

@@ -106,9 +106,7 @@ class Animation extends React.Component {
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
-    //const pencil = this.pencilRef.current;
-   // const nato = this.natoRef.current;
-	// const java = this.javaRef.current;
+  
  
     var x = new Array(3);
     var y = new Array(3);
@@ -133,7 +131,7 @@ class Animation extends React.Component {
         elementClone[i].r= p/(1-this.ellipseParms[i].eccentricity*Math.cos(elementClone[i].angle));
         this.lastTime=currentTime;
 
-       canvas.width = window.innerWidth;
+       canvas.width = window.innerWidth/2.5;
        
       //  canvas.height = 240;
 
@@ -170,11 +168,9 @@ class Animation extends React.Component {
 	  incrementalScales[0] = rotated[0][2]/(canvas.width/4)+1;
 
       ctx.drawImage(this.ellipseParms[0].reference,
-        rotated[0][0]+xOffsets[0]- this.ellipseParms[0].reference.width/2,
-        rotated[0][1]+yOffsets[0]- this.ellipseParms[0].reference.height/2,incrementalScales[0]*originalWidth[0],incrementalScales[0]*originalHeight[0]);
-		
+      rotated[0][0]+xOffsets[0]- this.ellipseParms[0].reference.width/2,
+      rotated[0][1]+yOffsets[0]- this.ellipseParms[0].reference.height/2,incrementalScales[0]*originalWidth[0],incrementalScales[0]*originalHeight[0]);
 	
-      
 	  xOffsets[1] = canvas.width/2 - 2*foci[1]*Math.cos(this.ellipseParms[1].rotation_z) ;
 	  yOffsets[1] = canvas.height/2 - 2*foci[1]*Math.sin(this.ellipseParms[1].rotation_z)  ;
 	  incrementalScales[1] = rotated[1][2]/(canvas.width/4)+1;
@@ -187,14 +183,6 @@ class Animation extends React.Component {
 	  yOffsets[2] = canvas.height/2 - 2*foci[2]*Math.sin(this.ellipseParms[2].rotation_z)  ;
 	  incrementalScales[2] = rotated[2][2]/(canvas.width/4)+1;
 	  
-//	    ctx.drawImage(this.ellipseParms[2].reference,
- //       rotated[2][0]+xOffsets[1]- this.ellipseParms[2].reference.width/2,
-  //      rotated[2][1]+yOffsets[1]- this.ellipseParms[2].reference.height/2,incrementalScales[2]*originalWidth[2],incrementalScales[2]*originalHeight[2]);
-      
-	  //ctx.drawImage(this.ellipseParms[1].reference,
-       // rotated[1][0]+canvas.width/2  - pencil.width/2 - 2*foci[1],
-       // rotated[1][1]+canvas.height/2 - pencil.height/2);
-		
 	  ctx.drawImage(this.ellipseParms[2].reference,
       rotated[2][0]+canvas.width/2-this.ellipseParms[2].reference.width/2,
       rotated[2][1]+canvas.height/2-this.ellipseParms[2].reference.height/2,incrementalScales[2]*originalWidth[2],incrementalScales[2]*originalHeight[2]);
@@ -216,7 +204,7 @@ class Animation extends React.Component {
   
 
     render() {
-    return <div><canvas  height="300"  ref={this.canvasRef} class="dotted" >
+    return <div><canvas  height="300"  ref={this.canvasRef}  >
 
     <img ref={this.natoRef} src={nato} className="hidden" alt="NATO"/>
     <img ref={this.pencilRef} src={pencil} className="hidden"  alt="pencil"/>
