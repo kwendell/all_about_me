@@ -52,8 +52,10 @@ class App extends React.Component {
 		<li>Developed desktop authoring tool for the design of digital signage media.
 </li>
 <li>Authored user interface specification documents for both handheld and desktop devices.</li>
-<li>Customer demos; served as a point of contact for human factors concerns, issues.
+<li>Conducted Customer demos; generated pre-sales artifacts.
 </li>
+<li>Led retailer integration efforts through successful release.</li>
+<li>Developed and deployed content service for digital signage application; oversaw cloud deployment of content generation service.</li>
 		</ul>
 		
 		</div>
