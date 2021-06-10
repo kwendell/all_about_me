@@ -50,13 +50,15 @@ class App extends React.Component {
 		
 		<ul>
 		<li>Developed authoring tool for the design of digital signage media.</li>
-        <li>Authored user interface specification documents for handheld and desktop devices.</li>
+      
         <li>Conducted customer demos; generated pre-sales artifacts.
         </li>
         <li>Led retailer integration efforts.</li>
         <li>Authored content generation digital signage service; oversaw cloud deployment of content generation service.</li>
         <li>Created and maintained digital signage content for retailers.</li>
         <li>Planned, coordinated product releases.</li>
+		<li>Authored user interface specification documents for handheld and desktop devices.</li>
+		<li>...a bunch of other stuff....</li>
 		</ul>
 		
 		<span class="work-experience-header">Lightbridge/Altawave, Inc.(July 2000 – March 2005)</span>
@@ -69,13 +71,13 @@ class App extends React.Component {
         <li>Storyboarded, designed and developed a Java/Swing Graphical User Interface for application to monitor application and network level alarms within a Network Operations Center.</li>
         <li>Led a team to consensus from use case analysis and u/i storyboarding efforts through the implementation of a web-based conferencing application.</li>
       
-        <li>Led project development efforts.</li>
+      
 		</ul>
 		
 		<span class="work-experience-header">Savi Technology - Sunnyvale, CA (Oct 98 – June 2000)</span>
 		
 		<ul>
-		<li>Developed Graphical User Interfaces using Java AWT/Swing for client/server shipping/transportation application.</li>
+		<li>Developed Graphical User Interfaces for client/server shipping/transportation application.</li>
         <li>Determined requirements, designed in the implementation of a client application.</li>
         <li>Led system test efforts for system deployment.
         </li>
