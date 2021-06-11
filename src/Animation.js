@@ -160,51 +160,26 @@ class Animation extends React.Component {
 	  const xOffsets = new Array(3);
 	  const yOffsets = new Array(3);
 	  const incrementalScales = new Array(this.ellipseParms.length);
-
-      semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
-      semi_minor_axis[1]=this.ellipseParms[1].semi_major_axis*Math.sqrt((1-this.ellipseParms[1].eccentricity**2));
-	  semi_minor_axis[2]=this.ellipseParms[2].semi_major_axis*Math.sqrt((1-this.ellipseParms[2].eccentricity**2));
-	  semi_minor_axis[3]=this.ellipseParms[3].semi_major_axis*Math.sqrt((1-this.ellipseParms[3].eccentricity**2));
-
-      foci[0]=Math.sqrt(this.ellipseParms[0].semi_major_axis**2 - semi_minor_axis[0]**2);
-      foci[1]=Math.sqrt(this.ellipseParms[1].semi_major_axis**2 - semi_minor_axis[1]**2);
-	  foci[2]=Math.sqrt(this.ellipseParms[2].semi_major_axis**2 - semi_minor_axis[2]**2);
-	  foci[3]=Math.sqrt(this.ellipseParms[3].semi_major_axis**2 - semi_minor_axis[2]**2);
 	  
-	  
-	  xOffsets[0] = canvas.width/2 - 2*foci[0]*Math.cos(this.ellipseParms[0].rotation_z) ;
-	  yOffsets[0] = canvas.height/2 - 2*foci[0]*Math.sin(this.ellipseParms[0].rotation_z)  ;
-	  incrementalScales[0] = rotated[0][2]/(canvas.width/4)+1;
+	  for (var k=0;k<this.ellipseParms.length;k++) {
+		   semi_minor_axis[k]=this.ellipseParms[k].semi_major_axis*Math.sqrt((1-this.ellipseParms[k].eccentricity**2));
+		   foci[k]=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis[k]**2);
+		   xOffsets[k] = canvas.width/2 - 2*foci[k]*Math.cos(this.ellipseParms[k].rotation_z) ;
+	       yOffsets[k] = canvas.height/2 - 2*foci[k]*Math.sin(this.ellipseParms[k].rotation_z)  ;
+		   if ( rotated[k][2]!== 'undefined')  {
+	         incrementalScales[k] = rotated[k][2]/(canvas.width/4)+1;
+		   
+		     ctx.drawImage(this.ellipseParms[k].reference,
+             rotated[k][0]+xOffsets[k]- this.ellipseParms[k].reference.width/2,
+             rotated[k][1]+yOffsets[k]- this.ellipseParms[k].reference.height/2,incrementalScales[k]*originalWidth[k],incrementalScales[k]*originalHeight[k]);
+		   }
+	  }
 
-      ctx.drawImage(this.ellipseParms[0].reference,
-      rotated[0][0]+xOffsets[0]- this.ellipseParms[0].reference.width/2,
-      rotated[0][1]+yOffsets[0]- this.ellipseParms[0].reference.height/2,incrementalScales[0]*originalWidth[0],incrementalScales[0]*originalHeight[0]);
+    
+	  
 	
-	  xOffsets[1] = canvas.width/2 - 2*foci[1]*Math.cos(this.ellipseParms[1].rotation_z) ;
-	  yOffsets[1] = canvas.height/2 - 2*foci[1]*Math.sin(this.ellipseParms[1].rotation_z)  ;
-	  incrementalScales[1] = rotated[1][2]/(canvas.width/4)+1;
-	  
-	  ctx.drawImage(this.ellipseParms[1].reference,
-      rotated[1][0]+xOffsets[1]- this.ellipseParms[1].reference.width/2,
-      rotated[1][1]+yOffsets[1]- this.ellipseParms[1].reference.height/2,incrementalScales[1]*originalWidth[1],incrementalScales[1]*originalHeight[1]);
-		
-	  xOffsets[2] = canvas.width/2 - 2*foci[2]*Math.cos(this.ellipseParms[2].rotation_z) ;
-	  yOffsets[2] = canvas.height/2 - 2*foci[2]*Math.sin(this.ellipseParms[2].rotation_z)  ;
-	  incrementalScales[2] = rotated[2][2]/(canvas.width/4)+1;
-	  
-	  ctx.drawImage(this.ellipseParms[2].reference,
-      rotated[2][0]+canvas.width/2-this.ellipseParms[2].reference.width/2,
-      rotated[2][1]+canvas.height/2-this.ellipseParms[2].reference.height/2,incrementalScales[2]*originalWidth[2],incrementalScales[2]*originalHeight[2]);
-	  
-	   xOffsets[3] = canvas.width/2 - 2*foci[3]*Math.cos(this.ellipseParms[3].rotation_z) ;
-	  yOffsets[3] = canvas.height/2 - 2*foci[3]*Math.sin(this.ellipseParms[3].rotation_z)  ;
-	  incrementalScales[3] = rotated[3][2]/(canvas.width/4)+1;
-	  
-	  ctx.drawImage(this.ellipseParms[3].reference,
-      rotated[3][0]+canvas.width/2-this.ellipseParms[3].reference.width/2,
-      rotated[3][1]+canvas.height/2-this.ellipseParms[3].reference.height/2,incrementalScales[3]*originalWidth[3],incrementalScales[3]*originalHeight[3]);
-	  
-//console.log(incrementalScales[2]);
+
+
 		
 	
       ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
