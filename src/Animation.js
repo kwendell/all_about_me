@@ -148,8 +148,18 @@ class Animation extends React.Component {
 
       }
 	}
+
+	  for (var k=0;k<this.ellipseParms.length;k++) {
+		  	this.ellipseParms[k].rotatedX = rotated[k][0];
+	        this.ellipseParms[k].rotatedY = rotated[k][1];
+	        this.ellipseParms[k].rotatedZ = rotated[k][2];
+		
+	  }
+
+	
 	
 	//this.ellipseParms.sort((a, b) => (a.zCoord > b.zCoord) ? 1 : -1);
+	
 	const originalWidth = [];
 	const originalHeight = [];
 	
@@ -162,13 +172,6 @@ class Animation extends React.Component {
 	originalWidth[3] = this.ellipseParms[3].reference.width;
 	originalHeight[3] = this.ellipseParms[3].reference.height;
 	
-	
-
- //     const semi_minor_axis = new Array(3);
- //     const foci = new Array(2);
-	//  const xOffsets = new Array(3);
-//	  const yOffsets = new Array(3);
-//	  const incrementalScales = new Array(this.ellipseParms.length);
 	  
 	  for (var k=0;k<this.ellipseParms.length;k++) {
 		
@@ -176,12 +179,12 @@ class Animation extends React.Component {
 		   var foci=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis**2);
 		   var xOffset = canvas.width/2 - 2*foci*Math.cos(this.ellipseParms[k].rotation_z) ;
 	       var yOffset = canvas.height/2 - 2*foci*Math.sin(this.ellipseParms[k].rotation_z)  ;
-		   if ( rotated[k][2]!=null)  {
-	         var incrementalScale = rotated[k][2]/(canvas.width/4)+1;
+		   if ( this.ellipseParms[k].rotatedZ!=null)  {
+	         var incrementalScale = this.ellipseParms[k].rotatedZ/(canvas.width/4)+1;
 		   
 		     ctx.drawImage(this.ellipseParms[k].reference,
-             rotated[k][0]+xOffset- this.ellipseParms[k].reference.width/2,
-             rotated[k][1]+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
+             this.ellipseParms[k].rotatedX+xOffset- this.ellipseParms[k].reference.width/2,
+             this.ellipseParms[k].rotatedY+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
 		   }
 	  }
 
