@@ -117,17 +117,10 @@ class Animation extends React.Component {
     var y = new Array(4);
     var z = new Array(4);
     const rotated = [[],[],[]];
-	const originalWidth = [];
-	const originalHeight = [];
+
 	
-	originalWidth[0]= this.ellipseParms[0].reference.width;
-	originalHeight [0] = this.ellipseParms[0].reference.height;
-	originalWidth[1] = this.ellipseParms[1].reference.width;
-	originalHeight[1] = this.ellipseParms[1].reference.height;
-	originalWidth[2] = this.ellipseParms[2].reference.width;
-	originalHeight[2] = this.ellipseParms[2].reference.height;
-	originalWidth[3] = this.ellipseParms[3].reference.width;
-	originalHeight[3] = this.ellipseParms[3].reference.height;
+	
+	
 	
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
@@ -149,29 +142,46 @@ class Animation extends React.Component {
       
         // Rotate the coordinates
         rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
+		this.ellipseParms[i].zCoord=rotated[i][2];
 		
 		//console.log(rotated[i][2] );
 
       }
 	}
+	
+	//this.ellipseParms.sort((a, b) => (a.zCoord > b.zCoord) ? 1 : -1);
+	const originalWidth = [];
+	const originalHeight = [];
+	
+	originalWidth[0]= this.ellipseParms[0].reference.width;
+	originalHeight [0] = this.ellipseParms[0].reference.height;
+	originalWidth[1] = this.ellipseParms[1].reference.width;
+	originalHeight[1] = this.ellipseParms[1].reference.height;
+	originalWidth[2] = this.ellipseParms[2].reference.width;
+	originalHeight[2] = this.ellipseParms[2].reference.height;
+	originalWidth[3] = this.ellipseParms[3].reference.width;
+	originalHeight[3] = this.ellipseParms[3].reference.height;
+	
+	
 
-      const semi_minor_axis = new Array(3);
-      const foci = new Array(2);
-	  const xOffsets = new Array(3);
-	  const yOffsets = new Array(3);
-	  const incrementalScales = new Array(this.ellipseParms.length);
+ //     const semi_minor_axis = new Array(3);
+ //     const foci = new Array(2);
+	//  const xOffsets = new Array(3);
+//	  const yOffsets = new Array(3);
+//	  const incrementalScales = new Array(this.ellipseParms.length);
 	  
 	  for (var k=0;k<this.ellipseParms.length;k++) {
-		   semi_minor_axis[k]=this.ellipseParms[k].semi_major_axis*Math.sqrt((1-this.ellipseParms[k].eccentricity**2));
-		   foci[k]=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis[k]**2);
-		   xOffsets[k] = canvas.width/2 - 2*foci[k]*Math.cos(this.ellipseParms[k].rotation_z) ;
-	       yOffsets[k] = canvas.height/2 - 2*foci[k]*Math.sin(this.ellipseParms[k].rotation_z)  ;
-		   if ( rotated[k][2]!== 'undefined')  {
-	         incrementalScales[k] = rotated[k][2]/(canvas.width/4)+1;
+		
+		   var semi_minor_axis=this.ellipseParms[k].semi_major_axis*Math.sqrt((1-this.ellipseParms[k].eccentricity**2));
+		   var foci=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis**2);
+		   var xOffset = canvas.width/2 - 2*foci*Math.cos(this.ellipseParms[k].rotation_z) ;
+	       var yOffset = canvas.height/2 - 2*foci*Math.sin(this.ellipseParms[k].rotation_z)  ;
+		   if ( rotated[k][2]!=null)  {
+	         var incrementalScale = rotated[k][2]/(canvas.width/4)+1;
 		   
 		     ctx.drawImage(this.ellipseParms[k].reference,
-             rotated[k][0]+xOffsets[k]- this.ellipseParms[k].reference.width/2,
-             rotated[k][1]+yOffsets[k]- this.ellipseParms[k].reference.height/2,incrementalScales[k]*originalWidth[k],incrementalScales[k]*originalHeight[k]);
+             rotated[k][0]+xOffset- this.ellipseParms[k].reference.width/2,
+             rotated[k][1]+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
 		   }
 	  }
 
