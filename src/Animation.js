@@ -3,8 +3,9 @@ import React from 'react';
 
 import me from './images/meTransparent.png';
 import nato from './images/NATO.png';
-import pencil from './images/pencil.png';
+import html_canvas from './images/html_canvas.bmp';
 import java from './images/java.png';
+import ui_dev from './images/ui_dev.png';
 class Animation extends React.Component {
   constructor(props) {
     super(props);
@@ -16,19 +17,22 @@ class Animation extends React.Component {
 	this.refs[0]=React.createRef();
 	
     this.meRef = React.createRef();
-    this.pencilRef = React.createRef();
+    this.html_canvasRef = React.createRef();
 	this.javaRef = React.createRef();
+	this.ui_devRef = React.createRef();
 	
     this.ellipseParms = [{semi_major_axis:70,eccentricity:.3,reference:null,deltaTheta:.015,rotation_x:30*(Math.PI/180),rotation_y:0*(Math.PI/180),rotation_z:90*(Math.PI/180)},
-                          {semi_major_axis:100,eccentricity:.7,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:0},
-						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0}];
+                          {semi_major_axis:90,eccentricity:.05,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:15*(Math.PI/180)},
+						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0},
+					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0}];
     const k = 7.407e-3;
     this.ellipseParms[0].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[0].semi_major_axis**3));
     this.ellipseParms[1].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[1].semi_major_axis**3));
 	this.ellipseParms[2].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[2].semi_major_axis**3));
+	this.ellipseParms[3].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[3].semi_major_axis**3));
     this.computeRotation();
     this.state = {
-      list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100}],
+      list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100}],
     };
 
 
@@ -101,16 +105,17 @@ class Animation extends React.Component {
     const deltaTime = currentTime-this.lastTime;
 
     this.ellipseParms[0].reference = this.natoRef.current;
-    this.ellipseParms[1].reference = this.pencilRef.current;
+    this.ellipseParms[1].reference = this.html_canvasRef.current;
 	this.ellipseParms[2].reference = this.javaRef.current;
+	this.ellipseParms[3].reference = this.ui_devRef.current;
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
   
  
-    var x = new Array(3);
-    var y = new Array(3);
-    var z = new Array(3);
+    var x = new Array(4);
+    var y = new Array(4);
+    var z = new Array(4);
     const rotated = [[],[],[]];
 	const originalWidth = [];
 	const originalHeight = [];
@@ -121,6 +126,8 @@ class Animation extends React.Component {
 	originalHeight[1] = this.ellipseParms[1].reference.height;
 	originalWidth[2] = this.ellipseParms[2].reference.width;
 	originalHeight[2] = this.ellipseParms[2].reference.height;
+	originalWidth[3] = this.ellipseParms[3].reference.width;
+	originalHeight[3] = this.ellipseParms[3].reference.height;
 	
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
@@ -157,10 +164,12 @@ class Animation extends React.Component {
       semi_minor_axis[0]=this.ellipseParms[0].semi_major_axis*Math.sqrt((1-this.ellipseParms[0].eccentricity**2));
       semi_minor_axis[1]=this.ellipseParms[1].semi_major_axis*Math.sqrt((1-this.ellipseParms[1].eccentricity**2));
 	  semi_minor_axis[2]=this.ellipseParms[2].semi_major_axis*Math.sqrt((1-this.ellipseParms[2].eccentricity**2));
+	  semi_minor_axis[3]=this.ellipseParms[3].semi_major_axis*Math.sqrt((1-this.ellipseParms[3].eccentricity**2));
 
       foci[0]=Math.sqrt(this.ellipseParms[0].semi_major_axis**2 - semi_minor_axis[0]**2);
       foci[1]=Math.sqrt(this.ellipseParms[1].semi_major_axis**2 - semi_minor_axis[1]**2);
 	  foci[2]=Math.sqrt(this.ellipseParms[2].semi_major_axis**2 - semi_minor_axis[2]**2);
+	  foci[3]=Math.sqrt(this.ellipseParms[3].semi_major_axis**2 - semi_minor_axis[2]**2);
 	  
 	  
 	  xOffsets[0] = canvas.width/2 - 2*foci[0]*Math.cos(this.ellipseParms[0].rotation_z) ;
@@ -187,6 +196,14 @@ class Animation extends React.Component {
       rotated[2][0]+canvas.width/2-this.ellipseParms[2].reference.width/2,
       rotated[2][1]+canvas.height/2-this.ellipseParms[2].reference.height/2,incrementalScales[2]*originalWidth[2],incrementalScales[2]*originalHeight[2]);
 	  
+	   xOffsets[3] = canvas.width/2 - 2*foci[3]*Math.cos(this.ellipseParms[3].rotation_z) ;
+	  yOffsets[3] = canvas.height/2 - 2*foci[3]*Math.sin(this.ellipseParms[3].rotation_z)  ;
+	  incrementalScales[3] = rotated[3][2]/(canvas.width/4)+1;
+	  
+	  ctx.drawImage(this.ellipseParms[3].reference,
+      rotated[3][0]+canvas.width/2-this.ellipseParms[3].reference.width/2,
+      rotated[3][1]+canvas.height/2-this.ellipseParms[3].reference.height/2,incrementalScales[3]*originalWidth[3],incrementalScales[3]*originalHeight[3]);
+	  
 //console.log(incrementalScales[2]);
 		
 	
@@ -207,8 +224,9 @@ class Animation extends React.Component {
     return <div><canvas  height="250"  ref={this.canvasRef}  >
 
     <img ref={this.natoRef} src={nato} className="hidden" alt="NATO"/>
-    <img ref={this.pencilRef} src={pencil} className="hidden"  alt="pencil"/>
+    <img ref={this.html_canvasRef} src={html_canvas} className="hidden"  alt="html-canvas"/>
 	<img ref={this.javaRef} src={java} className="hidden" alt="JAVA"/>
+	<img ref={this.ui_devRef} src={ui_dev} className="hidden" alt="UI Dev"/>
     <img ref={this.meRef} src={me} className="hidden" alt="just me" />
     </canvas>
 
