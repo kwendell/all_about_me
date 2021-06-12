@@ -160,14 +160,16 @@ class Animation extends React.Component {
 	const originalWidth = [];
 	const originalHeight = [];
 	
-	originalWidth[0]= this.ellipseParms[0].reference.width;
-	originalHeight [0] = this.ellipseParms[0].reference.height;
-	originalWidth[1] = this.ellipseParms[1].reference.width;
-	originalHeight[1] = this.ellipseParms[1].reference.height;
-	originalWidth[2] = this.ellipseParms[2].reference.width;
-	originalHeight[2] = this.ellipseParms[2].reference.height;
-	originalWidth[3] = this.ellipseParms[3].reference.width;
-	originalHeight[3] = this.ellipseParms[3].reference.height;
+	this.ellipseParms[0].originalWidth=this.ellipseParms[0].reference.width;
+	this.ellipseParms[0].originalHeight=this.ellipseParms[0].reference.height;
+	this.ellipseParms[1].originalWidth=this.ellipseParms[1].reference.width;
+	this.ellipseParms[1].originalHeight=this.ellipseParms[1].reference.height;
+	this.ellipseParms[2].originalWidth=this.ellipseParms[2].reference.width;
+	this.ellipseParms[2].originalHeight=this.ellipseParms[2].reference.height;
+	this.ellipseParms[3].originalWidth=this.ellipseParms[3].reference.width;
+	this.ellipseParms[3].originalHeight=this.ellipseParms[3].reference.height;
+	
+	//this.ellipseParms.sort((a, b) => (a.zCoord >= b.zCoord) ? 1 : -1);
 	
 	  
 	  for (var k=0;k<this.ellipseParms.length;k++) {
@@ -181,7 +183,7 @@ class Animation extends React.Component {
 		   
 		     ctx.drawImage(this.ellipseParms[k].reference,
              this.ellipseParms[k].xCoord+xOffset- this.ellipseParms[k].reference.width/2,
-             this.ellipseParms[k].yCoord+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
+             this.ellipseParms[k].yCoord+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*this.ellipseParms[k].originalWidth,incrementalScale*this.ellipseParms[k].originalHeight);
 		   }
 	  }
 
