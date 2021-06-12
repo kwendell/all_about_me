@@ -143,18 +143,15 @@ class Animation extends React.Component {
         // Rotate the coordinates
         rotated[i] = this.rotate(x[i],y[i],z[i],this.rotationMatrices[i]);
 		this.ellipseParms[i].zCoord=rotated[i][2];
+		this.ellipseParms[i].xCoord=rotated[i][0];
+		this.ellipseParms[i].yCoord=rotated[i][1];
 		
 		//console.log(rotated[i][2] );
 
       }
 	}
 
-	  for (var k=0;k<this.ellipseParms.length;k++) {
-		  	this.ellipseParms[k].rotatedX = rotated[k][0];
-	        this.ellipseParms[k].rotatedY = rotated[k][1];
-	        this.ellipseParms[k].rotatedZ = rotated[k][2];
-		
-	  }
+	
 
 	
 	
@@ -179,12 +176,12 @@ class Animation extends React.Component {
 		   var foci=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis**2);
 		   var xOffset = canvas.width/2 - 2*foci*Math.cos(this.ellipseParms[k].rotation_z) ;
 	       var yOffset = canvas.height/2 - 2*foci*Math.sin(this.ellipseParms[k].rotation_z)  ;
-		   if ( this.ellipseParms[k].rotatedZ!=null)  {
-	         var incrementalScale = this.ellipseParms[k].rotatedZ/(canvas.width/4)+1;
+		   if ( this.ellipseParms[k].zCoord!=null)  {
+	         var incrementalScale = this.ellipseParms[k].zCoord/(canvas.width/4)+1;
 		   
 		     ctx.drawImage(this.ellipseParms[k].reference,
-             this.ellipseParms[k].rotatedX+xOffset- this.ellipseParms[k].reference.width/2,
-             this.ellipseParms[k].rotatedY+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
+             this.ellipseParms[k].xCoord+xOffset- this.ellipseParms[k].reference.width/2,
+             this.ellipseParms[k].yCoord+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*originalWidth[k],incrementalScale*originalHeight[k]);
 		   }
 	  }
 
