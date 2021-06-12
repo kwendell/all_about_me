@@ -169,21 +169,21 @@ class Animation extends React.Component {
 	this.ellipseParms[3].originalWidth=this.ellipseParms[3].reference.width;
 	this.ellipseParms[3].originalHeight=this.ellipseParms[3].reference.height;
 	
-	//this.ellipseParms.sort((a, b) => (a.zCoord >= b.zCoord) ? 1 : -1);
 	
-	  
+	 let ellipseClone = [...this.ellipseParms];
+	 ellipseClone.sort((a, b) => (a.zCoord >= b.zCoord) ? 1 : -1);
 	  for (var k=0;k<this.ellipseParms.length;k++) {
-		
-		   var semi_minor_axis=this.ellipseParms[k].semi_major_axis*Math.sqrt((1-this.ellipseParms[k].eccentricity**2));
-		   var foci=Math.sqrt(this.ellipseParms[k].semi_major_axis**2 - semi_minor_axis**2);
-		   var xOffset = canvas.width/2 - 2*foci*Math.cos(this.ellipseParms[k].rotation_z) ;
-	       var yOffset = canvas.height/2 - 2*foci*Math.sin(this.ellipseParms[k].rotation_z)  ;
-		   if ( this.ellipseParms[k].zCoord!=null)  {
-	         var incrementalScale = this.ellipseParms[k].zCoord/(canvas.width/4)+1;
+		console.log(ellipseClone[k].zCoord);
+		   var semi_minor_axis=ellipseClone[k].semi_major_axis*Math.sqrt((1-ellipseClone[k].eccentricity**2));
+		   var foci=Math.sqrt(ellipseClone[k].semi_major_axis**2 - semi_minor_axis**2);
+		   var xOffset = canvas.width/2 - 2*foci*Math.cos(ellipseClone[k].rotation_z) ;
+	       var yOffset = canvas.height/2 - 2*foci*Math.sin(ellipseClone[k].rotation_z)  ;
+		   if ( ellipseClone[k].zCoord!=null)  {
+	         var incrementalScale = ellipseClone[k].zCoord/(canvas.width/4)+1;
 		   
-		     ctx.drawImage(this.ellipseParms[k].reference,
-             this.ellipseParms[k].xCoord+xOffset- this.ellipseParms[k].reference.width/2,
-             this.ellipseParms[k].yCoord+yOffset-this.ellipseParms[k].reference.height/2,incrementalScale*this.ellipseParms[k].originalWidth,incrementalScale*this.ellipseParms[k].originalHeight);
+		     ctx.drawImage(ellipseClone[k].reference,
+             ellipseClone[k].xCoord+xOffset- ellipseClone[k].reference.width/2,
+             ellipseClone[k].yCoord+yOffset-ellipseClone[k].reference.height/2,incrementalScale*ellipseClone[k].originalWidth,incrementalScale*ellipseClone[k].originalHeight);
 		   }
 	  }
 
