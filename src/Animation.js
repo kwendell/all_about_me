@@ -154,8 +154,7 @@ class Animation extends React.Component {
 	
 
 	
-	
-	//this.ellipseParms.sort((a, b) => (a.zCoord > b.zCoord) ? 1 : -1);
+
 	
 	const originalWidth = [];
 	const originalHeight = [];
@@ -169,11 +168,18 @@ class Animation extends React.Component {
 	this.ellipseParms[3].originalWidth=this.ellipseParms[3].reference.width;
 	this.ellipseParms[3].originalHeight=this.ellipseParms[3].reference.height;
 	
+	// special element for the center
+	var me_element = {semi_major_axis:0,eccentricity:0.0,reference:me,deltaTheta:0.0,rotation_x:0.0,rotation_y:0.0,rotation_z:0.0}
+    me_element.zCoord=0;
+	
+	//this.ellipseParms.push(me_element);
 	
 	 let ellipseClone = [...this.ellipseParms];
+	 ellipseClone.push(me_element);
 	 ellipseClone.sort((a, b) => (a.zCoord >= b.zCoord) ? 1 : -1);
-	  for (var k=0;k<this.ellipseParms.length;k++) {
-		console.log(ellipseClone[k].zCoord);
+	 console.log(ellipseClone.length);
+	  for (var k=0;k<ellipseClone.length;k++) {
+		
 		   var semi_minor_axis=ellipseClone[k].semi_major_axis*Math.sqrt((1-ellipseClone[k].eccentricity**2));
 		   var foci=Math.sqrt(ellipseClone[k].semi_major_axis**2 - semi_minor_axis**2);
 		   var xOffset = canvas.width/2 - 2*foci*Math.cos(ellipseClone[k].rotation_z) ;
@@ -186,10 +192,12 @@ class Animation extends React.Component {
              ellipseClone[k].yCoord+yOffset-ellipseClone[k].reference.height/2,incrementalScale*ellipseClone[k].originalWidth,incrementalScale*ellipseClone[k].originalHeight);
 		   }
 	  }
+	  
+	  
 
     
 	  
-	
+	//this.ellipseParms.pop();
 
 
 		
