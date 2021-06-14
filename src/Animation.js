@@ -9,6 +9,7 @@ import ui_dev from './images/ui_dev.png';
 import c_plus_plus from './images/c++.png';
 import digital_signage from './images/digital_signage.png';
 import jquery from './images/jquery.png';
+import javascript from './images/javascript.png';
 class Animation extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ class Animation extends React.Component {
 	
     this.canvasRef = React.createRef();
     this.natoRef = React.createRef();
+	this.javascriptRef = React.createRef();
 	
 	this.c_plus_plusRef = React.createRef();
 	this.digital_signageRef = React.createRef();
@@ -31,7 +33,8 @@ class Animation extends React.Component {
 					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0},
 						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0},
 						  {semi_major_axis:110,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:10*(Math.PI/180),rotation_z:180*(Math.PI/180)},
-					      {semi_major_axis:90,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:10*(Math.PI/180),rotation_y:0,rotation_z:45*(Math.PI/180)}];
+					      {semi_major_axis:90,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:10*(Math.PI/180),rotation_y:0,rotation_z:45*(Math.PI/180)},
+						  {semi_major_axis:60,eccentricity:.1,reference:null,deltaTheta:.01,rotation_x:45*(Math.PI/180),rotation_y:0,rotation_z:10*(Math.PI/180)}];
     const k = 7.407e-3;
    
 	
@@ -40,7 +43,7 @@ class Animation extends React.Component {
 	}
     this.computeRotation();
     this.state = {
-      list: [{angle: 180, r:100},{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100},{angle: 270, r:100},{angle: 270, r:100}],
+      list: [{angle: 180, r:100},{angle: 180, r:100},{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100},{angle: 270, r:100},{angle: 270, r:100}],
     };
 
 
@@ -92,8 +95,7 @@ class Animation extends React.Component {
 
   componentDidMount() {
     this.rAF = requestAnimationFrame(this.updateAnimationState);
-    //this.setState({r:this.ellipseParms[0].semi_major_axis});
-//    this.setState({angle:0});
+   
   }
 
   componentWillUnmount() {
@@ -118,6 +120,7 @@ class Animation extends React.Component {
 	this.ellipseParms[4].reference = this.c_plus_plusRef.current;
 	this.ellipseParms[5].reference = this.digital_signageRef.current;
 	this.ellipseParms[6].reference = this.jqueryRef.current;
+    this.ellipseParms[7].reference = this.javascriptRef.current;
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
@@ -128,10 +131,6 @@ class Animation extends React.Component {
     var z = new Array(4);
     const rotated = [[],[],[]];
 
-	
-	
-	
-	
     for (let i=0;i<this.ellipseParms.length;i++) {
       if (deltaTime > 1 ) {
 
@@ -228,6 +227,7 @@ class Animation extends React.Component {
 	<img ref={this.c_plus_plusRef} src={c_plus_plus} className="hidden" alt="C++"/>
 	<img ref={this.digital_signageRef} src={digital_signage} className="hidden" alt="digital signage"/>
 	<img ref={this.jqueryRef} src={jquery} className="hidden" alt="jquery"/>
+	<img ref={this.javascriptRef} src={javascript} className="hidden" alt="javascript"/>
     <img ref={this.meRef} src={me} className="hidden" alt="just me" />
     </canvas>
 
