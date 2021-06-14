@@ -32,7 +32,7 @@ class Animation extends React.Component {
 						  {semi_major_axis:80,eccentricity:.1,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:80*(Math.PI/180),rotation_z:180*(Math.PI/180)},
 					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0},
 						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0},
-						  {semi_major_axis:110,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:10*(Math.PI/180),rotation_z:180*(Math.PI/180)},
+						  {semi_major_axis:105,eccentricity:.4,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:10*(Math.PI/180),rotation_z:180*(Math.PI/180)},
 					      {semi_major_axis:90,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:10*(Math.PI/180),rotation_y:0,rotation_z:45*(Math.PI/180)},
 						  {semi_major_axis:60,eccentricity:.1,reference:null,deltaTheta:.01,rotation_x:45*(Math.PI/180),rotation_y:0,rotation_z:10*(Math.PI/180)}];
     const k = 7.407e-3;
