@@ -171,13 +171,14 @@ class Animation extends React.Component {
 	// special element for the center
 	var me_element = {semi_major_axis:0,eccentricity:0.0,reference:me,deltaTheta:0.0,rotation_x:0.0,rotation_y:0.0,rotation_z:0.0}
     me_element.zCoord=0;
+	me_element.reference = me;
 	
 	//this.ellipseParms.push(me_element);
 	
 	 let ellipseClone = [...this.ellipseParms];
 	 ellipseClone.push(me_element);
 	 ellipseClone.sort((a, b) => (a.zCoord >= b.zCoord) ? 1 : -1);
-	 console.log(ellipseClone.length);
+	 
 	  for (var k=0;k<ellipseClone.length;k++) {
 		
 		   var semi_minor_axis=ellipseClone[k].semi_major_axis*Math.sqrt((1-ellipseClone[k].eccentricity**2));
@@ -186,10 +187,15 @@ class Animation extends React.Component {
 	       var yOffset = canvas.height/2 - 2*foci*Math.sin(ellipseClone[k].rotation_z)  ;
 		   if ( ellipseClone[k].zCoord!=null)  {
 	         var incrementalScale = ellipseClone[k].zCoord/(canvas.width/4)+1;
-		   
+		     if (ellipseClone[k].semi_major_axis==0) {
+			 ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
+			 }  else {
 		     ctx.drawImage(ellipseClone[k].reference,
              ellipseClone[k].xCoord+xOffset- ellipseClone[k].reference.width/2,
              ellipseClone[k].yCoord+yOffset-ellipseClone[k].reference.height/2,incrementalScale*ellipseClone[k].originalWidth,incrementalScale*ellipseClone[k].originalHeight);
+			 }
+		 } else {
+			   console.log("can't draw "+k);
 		   }
 	  }
 	  
@@ -202,7 +208,7 @@ class Animation extends React.Component {
 
 		
 	
-      ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
+      //ctx.drawImage(me,canvas.width/2-me.width/2,canvas.height/2-me.height/2);
 
 
 //this.setState({list:elementClone})
