@@ -7,6 +7,7 @@ import html_canvas from './images/html_canvas.bmp';
 import java from './images/java.png';
 import ui_dev from './images/ui_dev.png';
 import c_plus_plus from './images/c++.png';
+import digital_signage from './images/digital_signage.png';
 class Animation extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ class Animation extends React.Component {
     this.natoRef = React.createRef();
 	
 	this.c_plus_plusRef = React.createRef();
+	this.digital_signageRef = React.createRef();
     this.meRef = React.createRef();
     this.html_canvasRef = React.createRef();
 	this.javaRef = React.createRef();
@@ -25,7 +27,8 @@ class Animation extends React.Component {
                           {semi_major_axis:90,eccentricity:.05,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:15*(Math.PI/180)},
 						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0},
 					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0},
-						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0}];
+						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0},
+						  {semi_major_axis:110,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:10*(Math.PI/180),rotation_z:180*(Math.PI/180)}];
     const k = 7.407e-3;
    
 	
@@ -34,7 +37,7 @@ class Animation extends React.Component {
 	}
     this.computeRotation();
     this.state = {
-      list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100},{angle: 270, r:100}],
+      list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100},{angle: 270, r:100},{angle: 270, r:100}],
     };
 
 
@@ -111,6 +114,7 @@ class Animation extends React.Component {
 	this.ellipseParms[2].reference = this.javaRef.current;
 	this.ellipseParms[3].reference = this.ui_devRef.current;
 	this.ellipseParms[4].reference = this.c_plus_plusRef.current;
+	this.ellipseParms[5].reference = this.digital_signageRef.current;
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext('2d');
     const me = this.meRef.current;
@@ -230,6 +234,7 @@ class Animation extends React.Component {
 	<img ref={this.javaRef} src={java} className="hidden" alt="JAVA"/>
 	<img ref={this.ui_devRef} src={ui_dev} className="hidden" alt="UI Dev"/>
 	<img ref={this.c_plus_plusRef} src={c_plus_plus} className="hidden" alt="C++"/>
+	<img ref={this.digital_signageRef} src={digital_signage} className="hidden" alt="digital signage"/>
     <img ref={this.meRef} src={me} className="hidden" alt="just me" />
     </canvas>
 
