@@ -27,11 +27,11 @@ class Animation extends React.Component {
 					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0},
 						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0}];
     const k = 7.407e-3;
-    this.ellipseParms[0].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[0].semi_major_axis**3));
-    this.ellipseParms[1].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[1].semi_major_axis**3));
-	this.ellipseParms[2].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[2].semi_major_axis**3));
-	this.ellipseParms[3].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[3].semi_major_axis**3));
-	this.ellipseParms[4].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[4].semi_major_axis**3));
+   
+	
+	for (var i=0 ; i< this.ellipseParms[4].length; i++) {
+		this.ellipseParms[i].deltaTheta=1/(Math.sqrt(k*this.ellipseParms[i].semi_major_axis**3));
+	}
     this.computeRotation();
     this.state = {
       list: [{angle: 180, r:100},{angle: 0, r:100},{angle: 90, r:100},{angle: 270, r:100},{angle: 270, r:100}],
