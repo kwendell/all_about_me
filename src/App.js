@@ -46,7 +46,8 @@ class App extends React.Component {
 
         </div>
 		<div >
-		<span class="work-experience-header">Store Intelligence (May 2005 – Present)</span>
+	    <h1 className="big-header">Work Experience</h1>
+		<div class="work-experience-header">Store Intelligence (May 2005 – Present)</div>
 		
 		<ul>
 		<li>Developed authoring tool for the design of digital signage media.</li>
@@ -61,7 +62,7 @@ class App extends React.Component {
 		<li>...a bunch of other stuff....</li>
 		</ul>
 		
-		<span class="work-experience-header">Lightbridge/Altawave, Inc.(July 2000 – March 2005)</span>
+		<div class="work-experience-header">Lightbridge/Altawave, Inc.(July 2000 – March 2005)</div>
 		
 		<ul>
 		<li>Developed application/user interface for AOL Instant Messenger 24 by 7 voice conferencing service (AIM® Voice Conferencing).</li>
@@ -74,7 +75,7 @@ class App extends React.Component {
       
 		</ul>
 		
-		<span class="work-experience-header">Savi Technology - Sunnyvale, CA (Oct 98 – June 2000)</span>
+		<div class="work-experience-header">Savi Technology - Sunnyvale, CA (Oct 98 – June 2000)</div>
 		
 		<ul>
 		<li>Developed Graphical User Interfaces for client/server shipping/transportation application.</li>
@@ -87,7 +88,7 @@ class App extends React.Component {
     
 		</ul>
 		
-		<span class="work-experience-header">Storm Control Systems (Oct 95 – Oct 98)</span>
+		<div class="work-experience-header">Storm Control Systems (Oct 95 – Oct 98)</div>
 		
 		<ul>
 		<li>Designed, implemented GUI for a distributed client-server product.</li>
@@ -99,6 +100,12 @@ class App extends React.Component {
 		</ul>
 		
 		
+		</div>
+		
+		<div>   <h1 className="big-header">Education</h1>
+		<div className="work-experience-item">B.A Applied Mathematics, University of California, Berkeley</div>
+		<div className="work-experience-item">Udacity Front End Developer Nano Degree</div>
+		<div className="work-experience-item">UCSC Extension Courses</div>
 		</div>
 
      
