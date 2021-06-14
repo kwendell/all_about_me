@@ -3,7 +3,7 @@ import React from 'react';
 
 import me from './images/meTransparent.png';
 import nato from './images/NATO.png';
-import html_canvas from './images/html_canvas.bmp';
+import html_canvas from './images/html_canvas.png';
 import java from './images/java.png';
 import ui_dev from './images/ui_dev.png';
 import c_plus_plus from './images/c++.png';
@@ -27,7 +27,7 @@ class Animation extends React.Component {
 	
     this.ellipseParms = [{semi_major_axis:70,eccentricity:.3,reference:null,deltaTheta:.015,rotation_x:30*(Math.PI/180),rotation_y:0*(Math.PI/180),rotation_z:90*(Math.PI/180)},
                           {semi_major_axis:90,eccentricity:.05,reference:null,deltaTheta:.02,rotation_x:0,rotation_y:0,rotation_z:15*(Math.PI/180)},
-						  {semi_major_axis:50,eccentricity:.001,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:0,rotation_z:0},
+						  {semi_major_axis:80,eccentricity:.1,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:80*(Math.PI/180),rotation_z:180*(Math.PI/180)},
 					      {semi_major_axis:50,eccentricity:.5,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:30*(Math.PI/180),rotation_z:0},
 						  {semi_major_axis:60,eccentricity:.05,reference:null,deltaTheta:.01,rotation_x:30*(Math.PI/180),rotation_y:0,rotation_z:0},
 						  {semi_major_axis:110,eccentricity:.6,reference:null,deltaTheta:.01,rotation_x:0,rotation_y:10*(Math.PI/180),rotation_z:180*(Math.PI/180)},
