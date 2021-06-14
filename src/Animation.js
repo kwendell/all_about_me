@@ -162,16 +162,12 @@ class Animation extends React.Component {
 	const originalWidth = [];
 	const originalHeight = [];
 	
-	this.ellipseParms[0].originalWidth=this.ellipseParms[0].reference.width;
-	this.ellipseParms[0].originalHeight=this.ellipseParms[0].reference.height;
-	this.ellipseParms[1].originalWidth=this.ellipseParms[1].reference.width;
-	this.ellipseParms[1].originalHeight=this.ellipseParms[1].reference.height;
-	this.ellipseParms[2].originalWidth=this.ellipseParms[2].reference.width;
-	this.ellipseParms[2].originalHeight=this.ellipseParms[2].reference.height;
-	this.ellipseParms[3].originalWidth=this.ellipseParms[3].reference.width;
-	this.ellipseParms[3].originalHeight=this.ellipseParms[3].reference.height;
-	this.ellipseParms[4].originalWidth=this.ellipseParms[4].reference.width;
-	this.ellipseParms[4].originalHeight=this.ellipseParms[4].reference.height;
+	
+	
+	for (var i =0 ; i < this.ellipseParms.length; i++ ) {
+      this.ellipseParms[i].originalWidth=this.ellipseParms[i].reference.width;
+	  this.ellipseParms[i].originalHeight=this.ellipseParms[i].reference.height;
+	}
 	
 	// special element for the center
 	var me_element = {semi_major_axis:0,eccentricity:0.0,reference:me,deltaTheta:0.0,rotation_x:0.0,rotation_y:0.0,rotation_z:0.0}
