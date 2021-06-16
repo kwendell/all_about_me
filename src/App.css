@@ -8,6 +8,7 @@
 .App {
   text-align: left;
  font-family: 'Reenie Beanie', cursive;
+  font-weight: bold;
 
 
 }
@@ -54,13 +55,14 @@ height:20%;
 .hidden {
 display:none;
 }
-
+/*
 .column {
   float: left;
   width: 25%;
   padding: 10px;
  
 }
+*/
 
 .sticky {
   float: left;
@@ -77,11 +79,13 @@ display:none;
 }
 
 /* Clear floats after the columns */
+/*
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
+*/
 
 
 

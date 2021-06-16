@@ -5,6 +5,8 @@ import Animation from './Animation.js'
 import Background from './images/graph_paper.png';
 import sticky from './images/profile-on-sticky.png';
 import projects from './images/meProjects.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 var sectionStyle = {
  width: "100%",
@@ -24,28 +26,28 @@ class App extends React.Component {
   render() {
 
 
-    return <div style={sectionStyle}>
-         <div style={headerStyle}>
-           <div class="row">
-             <div class="sticky">
-			  <img src={sticky} alt="sticky" />
-            
-             </div>
-             <div class="column">
-                        <h1 className="App">Kevin W. Duell</h1>
-             <h1 className="App">email: kdubzot9@gmail.com</h1>
-             <h1 className="App">Role:  U/I Architect</h1>
-             <h1 className="App">Phone:  (408) 234-7820</h1> 
+    return <div class="container">
+	    <div style={sectionStyle}>
+          <div style={headerStyle}>
+            <div class="row">
+		      <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="sticky">
+			      <img src={sticky} alt="sticky" />
+                </div>
+			  </div>
+             <div class="col-lg-4 col-md-6 col-sm-12" col>
+               <h1 className="App">Kevin W. Duell</h1>
+               <h1 className="App">email: kdubzot9@gmail.com</h1>
+               <h1 className="App">Role:  U/I Architect</h1>
+               <h1 className="App">Phone:  (408) 234-7820</h1> 
 			   <h1 className="App">Github:  kwendell</h1> 
-            </div>
-			   <div class="column">  <Animation  ></Animation></div>
-			
-           </div>
-		  
-           
-
+             </div>
+	        <div class="col-lg-5">  <Animation  ></Animation></div>
+		  </div>	
         </div>
 		<div >
+		<div class="row">
+		      <div class="col-sm-12">
 	    <h1 className="big-header">Work Experience</h1>
 		<div class="work-experience-header">Store Intelligence (May 2005 – Present)</div>
 		
@@ -104,11 +106,11 @@ class App extends React.Component {
 		
 		<div>   <h1 className="big-header">Education</h1>
 		<div className="work-experience-item">B.A Applied Mathematics, University of California, Berkeley</div>
-		<div className="work-experience-item">Udacity Front End Developer Nano Degree</div>
-		<div className="work-experience-item">UCSC Extension Courses</div>
+		
 		</div>
-
-     
+</div>
+     </div>
+	 </div>
       
     </div>
   }
