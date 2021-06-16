@@ -26,7 +26,7 @@ class App extends React.Component {
   render() {
 
 
-    return <div class="container">
+    return <div class="container-fluid">
 	    <div style={sectionStyle}>
           <div style={headerStyle}>
             <div class="row">
