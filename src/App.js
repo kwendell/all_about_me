@@ -37,7 +37,7 @@ class App extends React.Component {
 			  </div>
              <div class="col-lg-4 col-md-6 col-sm-12" col>
                <h1 className="App">Kevin W. Duell</h1>
-               <h1 className="App">email: kdubzot9@gmail.com</h1>
+               <h1 className="App">email: <a href="mailto:kdubzot9@gmail.com">kdubzot9@gmail.com</a></h1>
                <h1 className="App">Role:  U/I Architect</h1>
                <h1 className="App">Phone:  (408) 234-7820</h1> 
 			   <h1 className="App">Github:  kwendell</h1> 
